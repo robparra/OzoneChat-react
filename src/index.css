@@ -55,7 +55,7 @@ input, textarea {
 }
 #side-bar {
     box-sizing: border-box;
-    width: 33.75%;
+    width: 13.75%;
     height: 100%;
     display: grid;
     justify-content: stretch;
@@ -204,6 +204,17 @@ input, textarea {
     justify-content: center;
     font-size: 1em
 }
+.chatOpen{
+    width: 100%;
+    height: 100%
+}
+#div-s{
+   position: absolute;
+   top: 0;
+   right: 0;
+   width: 10%;
+   height: 10%; 
+}
 .chat-header {
     background: #000;
     box-shadow: 0px 6px 5px -2px rgba(225, 225, 225, 0.7);
@@ -264,7 +275,10 @@ input, textarea {
     flex-grow: 1;
     overflow-y: scroll;
     position: relative;
-    background: #dcddf5
+    background: #dcddf5;
+    height: 30%;
+    bottom: -70%;
+    width: 113%
 }
 .thread-container::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -373,7 +387,8 @@ input, textarea {
 .message-input {
     background: white;
     color: #484d79;
-    box-sizing: border-box
+    box-sizing: border-box;
+    width: 113%
 }
 .message-input .message-form {
     height: 100%;

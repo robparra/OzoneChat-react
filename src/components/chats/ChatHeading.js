@@ -10,7 +10,14 @@ export default function({name, numberOfUsers}) {
 					<div className="indicator"></div>
 					<span>{numberOfUsers ? numberOfUsers : null}</span>
 				</div>
-			</div>
+
+			<button className="chatOpen">Chat</button>
+			
+
+			
+
+		</div>
+
 		</div>
 	);
 	
