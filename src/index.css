@@ -204,7 +204,7 @@ input, textarea {
     justify-content: center;
     font-size: 1em
 }
-.chatOpen{
+.chat-show .chatOpen{
     width: 100%;
     height: 100%
 }
@@ -275,7 +275,7 @@ input, textarea {
     flex-grow: 1;
     overflow-y: scroll;
     position: relative;
-    background: #dcddf5;
+    background: transparent;
     height: 30%;
     bottom: -70%;
     width: 113%

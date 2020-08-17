@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
+import boton from '../boton';
 
 export default class Messages extends Component {
 	constructor(props) {
 	  super(props);
+	  this.chatButtom = this.chatButtom.bind(this)
 		
 		this.scrollDown = this.scrollDown.bind(this)
+		this.state = {
+			showContent:true
+		}
+	}
+
+	chatButtom(event){
+		event.preventDefault()
+		this.setState({
+			showContent:!this.state.showContent
+		})
 	}
 
 	scrollDown(){
@@ -22,9 +34,11 @@ export default class Messages extends Component {
 	
 	render() {
 		const { messages, user, typingUsers } = this.props
+		const {showContent} = this.state
 		return (
 			<div ref='container'
 				className="thread-container">
+				{showContent === true ?
 				<div className="thread">
 					{
 						messages.map((mes)=>{
@@ -53,8 +67,7 @@ export default class Messages extends Component {
 						})
 					}
 				</div>
-
-
+           :''}
 			</div>
 		);
 	}

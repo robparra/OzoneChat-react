@@ -9,16 +9,9 @@ export default function({name, numberOfUsers}) {
 				<div className="status">
 					<div className="indicator"></div>
 					<span>{numberOfUsers ? numberOfUsers : null}</span>
-				</div>
-
-			<button className="chatOpen">Chat</button>
-			
-
-			
-
-		</div>
-
-		</div>
+				</div>	
+		    </div>
+	    </div>
 	);
 	
 }

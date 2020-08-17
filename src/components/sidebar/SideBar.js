@@ -3,6 +3,7 @@ import FASearch from 'react-icons/lib/fa/search'
 import SideBarOption from './SideBarOption'
 import { last, get, differenceBy } from 'lodash' 
 import { createChatNameFromUsers } from '../../Factories'
+
 export default class SideBar extends Component{
 	static type = {
 		USERS:"users",

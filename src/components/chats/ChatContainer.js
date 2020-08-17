@@ -7,16 +7,26 @@ import ChatHeading from './ChatHeading'
 import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
 import { values, difference, differenceBy } from 'lodash'
+import boton from '../boton';
 
 export default class ChatContainer extends Component {
 	constructor(props) {
-	  super(props);	
+	  super(props);
+	  this.chatButtom = this.chatButtom.bind(this)	
 	
 	  this.state = {
 		  chats:[],
 		  users:[],
-	  	activeChat:null
+	  	activeChat:null,
+	  	showContent:true
 	  }
+	}
+
+	chatButtom(event){
+		event.preventDefault()
+		this.setState({
+			showContent:!this.state.showContent
+		})
 	}
 
 	componentDidMount() {
@@ -174,8 +184,11 @@ export default class ChatContainer extends Component {
 	render() {
 		const { user, logout } = this.props
 		const { chats, activeChat, users } = this.state
+		const {showContent} = this.state
 		return (
+			
 			<div className="container">
+			{showContent === true ?
 				<SideBar
 					logout={logout}
 					chats={chats}
@@ -185,6 +198,7 @@ export default class ChatContainer extends Component {
 					setActiveChat={this.setActiveChat}
 					onSendPrivateMessage={this.sendOpenPrivateMessage}
 					/>
+					:''}
 				<div className="chat-room-container">
 					{
 						activeChat !== null ? (
@@ -214,10 +228,12 @@ export default class ChatContainer extends Component {
 						<div className="chat-room choose">
 							<h3>Choose a chat!</h3>
 						</div>
+
 					}
 				</div>
-
+<button onClick={this.chatButtom}>Chat</button>
 			</div>
+			
 		);
 	}
 }
