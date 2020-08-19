@@ -7,7 +7,7 @@ import ChatHeading from './ChatHeading'
 import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
 import { values, difference, differenceBy } from 'lodash'
-import boton from '../boton';
+
 
 export default class ChatContainer extends Component {
 	constructor(props) {
@@ -200,7 +200,10 @@ export default class ChatContainer extends Component {
 					/>
 					:''}
 				<div className="chat-room-container">
+				{showContent === true ?
+					<div className="container">
 					{
+						
 						activeChat !== null ? (
 
 							<div className="chat-room">
@@ -228,10 +231,14 @@ export default class ChatContainer extends Component {
 						<div className="chat-room choose">
 							<h3>Choose a chat!</h3>
 						</div>
+						
 
 					}
+					</div>
+					:''}
 				</div>
-<button onClick={this.chatButtom}>Chat</button>
+				<button id="button-chat" onClick={this.chatButtom}>Chat</button>
+
 			</div>
 			
 		);

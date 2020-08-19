@@ -53,7 +53,7 @@ const createMessage = ({message = "", sender = ""} = { })=>(
 *		users {Array.string}
 * 
 */
-const createChat = ({messages = [], name = "OzoneChat", users = [], isCommunity = false} = {})=>(
+const createChat = ({messages = [], name = "Public Global Chat", users = [], isCommunity = false} = {})=>(
 	{
 		id:uuidv4(),
 		name: isCommunity ? name : createChatNameFromUsers(users),
@@ -71,7 +71,7 @@ const createChat = ({messages = [], name = "OzoneChat", users = [], isCommunity 
 * @return {string} users names concatenated by a '&' or "Empty Chat" if no users
 */
 const createChatNameFromUsers = (users, excludedUser = "") => {
-	return users.filter(u => u !== excludedUser).join(' & ') || "Empty Chat"
+	return users.filter(u => u !== excludedUser).join(' & ') || "User left the chat"
 }
 
 /*

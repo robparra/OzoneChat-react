@@ -8,6 +8,10 @@ html, body, #root {
 input, textarea {
     font-family: Arial
 }
+#button-chat{
+    position: absolute;
+    right: 15%
+}
 .login {
     width: 100%;
     height: 100%;
@@ -55,11 +59,14 @@ input, textarea {
 }
 #side-bar {
     box-sizing: border-box;
-    width: 13.75%;
-    height: 100%;
+    width: 12.75%;
+    height: 50%;
     display: grid;
     justify-content: stretch;
-    grid-template-rows: 8vh 5vh 5vh 1fr 8vh
+    grid-template-rows: 8vh 5vh 5vh 1fr 8vh;
+    position: relative;
+    right: -86%;
+    bottom: 7%
 }
 #side-bar .heading {
     box-sizing: border-box;
@@ -262,8 +269,11 @@ input, textarea {
 .chat-room {
     display: grid;
     grid-template: 8vh 1fr 8vh / 100%;
-    height: 100%;
-    width: 100%
+    height: 58%;
+    width: 18%;
+    position: relative;
+    left: 96%;
+    bottom: -42%
 }
 .chat-room.choose {
     align-items: center;
@@ -275,10 +285,11 @@ input, textarea {
     flex-grow: 1;
     overflow-y: scroll;
     position: relative;
-    background: transparent;
-    height: 30%;
-    bottom: -70%;
-    width: 113%
+    background: #fff;
+    height: 100%;
+    bottom: 0%;
+    width: 102%;
+    left: 0%
 }
 .thread-container::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -388,11 +399,14 @@ input, textarea {
     background: white;
     color: #484d79;
     box-sizing: border-box;
-    width: 113%
+    width: 102%;
+    left: 0%;
+    position: relative;
+    bottom: 0%
 }
 .message-input .message-form {
     height: 100%;
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-between
 }
@@ -420,7 +434,7 @@ input, textarea {
     outline: none
 }
 .message-input .message-form .send {
-    width: 20%;
+    width: 31%;
     box-sizing: border-box;
     font-size: 1.25em;
     text-align: center;
