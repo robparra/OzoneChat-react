@@ -12,7 +12,7 @@
     "uuid": "^3.1.0"
   },
   "scripts": {
-    "start-socket": "node src/server/session-chat.js",
+    "start-socket": "node src/server/index.js",
     "start": "node src/server/index.js",
     "dev": "concurrently 'npm run react' 'npm run server'",
     "react": "react-scripts start",

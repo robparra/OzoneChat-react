@@ -22,7 +22,8 @@ module.exports = function(socket){
 	//Verify Username
 	socket.on(VERIFY_USER, (nickname, callback)=>{
 		if(isUser(connectedUsers, nickname)){
-			callback({ isUser:true, user:null })
+			 //io.to(socket.id).emit(VERIFY_USER, {isUser:false, user:createUser({name:nickname, socketId:socket.id})})
+			 callback({ isUser:false, user:createUser({name:nickname, socketId:socket.id})})
 		}else{
 			callback({ isUser:false, user:createUser({name:nickname, socketId:socket.id})})
 		}
@@ -30,7 +31,7 @@ module.exports = function(socket){
 
 	//User Connects with username
 	socket.on(USER_CONNECTED, (user)=>{
-		user.socketId = socket.id
+		 //user.socketId = socket.id
 		connectedUsers = addUser(connectedUsers, user)
 		socket.user = user
 
@@ -56,13 +57,14 @@ module.exports = function(socket){
 	//User logsout
 	socket.on(LOGOUT, ()=>{
 		connectedUsers = removeUser(connectedUsers, socket.user.name)
-		io.emit(USER_DISCONNECTED, connectedUsers)
+		socket.emit(USER_DISCONNECTED, connectedUsers)
 		console.log("Disconnect", connectedUsers);
 
 	})
 
 	//Get Community Chat
 	socket.on(COMMUNITY_CHAT, (callback)=>{
+		// io.to(socket.id).emit(communityChat)
 		callback(communityChat)
 	})
 

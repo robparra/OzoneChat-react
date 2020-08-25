@@ -2,6 +2,7 @@ import io from 'socket.io-client'
 
 export default class {
     constructor() {
+      
         this.baseURL = window.location.hostname.includes("localhost")
             ? "http://localhost:3231/socket"
             : "/socket";
@@ -85,7 +86,7 @@ export default class {
     setTyping(state) {
         const { id, name, statePlayer } = this.player;
         if (state !== statePlayer) {
-            this.player = state;
+            this.player.state = state;
             //send to other players for display in your interface
             this.socket.emit("setTypingOtherPlayers", {
                 id: id,

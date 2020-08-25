@@ -14,9 +14,11 @@ export default class LoginForm extends Component {
 	setUser = ({user, isUser})=>{
 
 		if(isUser){
-			this.setError("User name taken")
+			// this.setError("User name taken")
+			// this.setError("")
+			this.props.setUser(user)
 		}else{
-			this.setError("")
+			// this.setError("")
 			this.props.setUser(user)
 		}
 	}
