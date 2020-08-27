@@ -4,11 +4,20 @@ import { VERIFY_USER } from '../Events'
 export default class LoginForm extends Component {
 	constructor(props) {
 	  super(props);
+	  this.chatButtom = this.chatButtom.bind(this)
 	
 	  this.state = {
 	  	nickname:"",
-	  	error:""
+	  	error:"",
+	  	showContent:true
 	  };
+	}
+
+	chatButtom(event){
+		event.preventDefault()
+		this.setState({
+			showContent:!this.state.showContent
+		})
 	}
 
 	setUser = ({user, isUser})=>{
@@ -40,25 +49,31 @@ export default class LoginForm extends Component {
 
 	render() {	
 		const { nickname, error } = this.state
+		const {showContent} = this.state
 		return (
-			<div className="login" >
+			<div className="login" ><div className="login" >
+			{showContent === true ?
 				<form onSubmit={this.handleSubmit} className="login-form" >
-
-					<label htmlFor="nickname">
-						<h2>OzoneChat</h2>
-					</label>
 					<input
 						ref={(input)=>{ this.textInput = input }} 
 						type="text"
 						id="nickname"
 						value={nickname}
 						onChange={this.handleChange}
-						placeholder={'Username'}
-						/>
+						placeholder={'ChatUsername'}
+						/><button id="submit"
+						type = "submit"
+						className = "login"
+
+					> login </button>
 						<div className="error">{error ? error:null}</div>
+						
 
 				</form>
-			</div>
+			:''}
+		</div><button id="button-chatlogin" onClick={this.chatButtom}>Chat</button>
+ </div>
+			
 		);
 	}
 }
