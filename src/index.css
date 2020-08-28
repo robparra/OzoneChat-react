@@ -3,18 +3,21 @@ html, body, #root {
     padding: 0;
     font-family: "Montserrat", sans-serif;
     height: 100%;
-    background:#000;
+    background:#fff;
+    width: 65%;
+    position: relative;
+    right: -34%
 }
 input, textarea {
     font-family: Arial
 }
 #button-chat{
     position: absolute;
-    right: 15%
+    right: 53%
 }
 #button-chatlogin{
     position: absolute;
-    right: 15%;
+    right: 53%;
     top: 0%
 }
 #submit{
@@ -43,7 +46,7 @@ input, textarea {
     justify-content: center;
     flex-direction: column;
     position: relative;
-    right: -41%;
+    right: -20%;
     top :-45%;
 }
 .login-form h2 {
@@ -80,18 +83,22 @@ input, textarea {
     flex-direction: row;
     align-items: flex-start;
     height: 100%;
-    width: 100%
+    width: 99%;
+    position: relative;
+    left: 4%
 }
 #side-bar {
     box-sizing: border-box;
-    width: 13.7%;
+    width: 69%;
     height: 50%;
     display: grid;
     justify-content: stretch;
     grid-template-rows: 8vh 5vh 5vh 1fr 8vh;
     position: relative;
-    right: -86%;
-    bottom: 7%
+    right: -52%;
+    bottom: 7%;
+    z-index: 3;
+    
 }
 #side-bar .heading {
     box-sizing: border-box;
@@ -280,7 +287,9 @@ input, textarea {
 }
 .chat-room-container {
     height: 100%;
-    width: 76.25%
+    width: 69%;
+    right: 19%;
+    top: 43%
 }
 @media screen and (max-width: 510px) {
     #side-bar {
@@ -294,11 +303,11 @@ input, textarea {
 .chat-room {
     display: grid;
     grid-template: 8vh 1fr 8vh / 100%;
-    height: 58%;
-    width: 17.99%;
+    height: 57%;
+    width: 100%;
     position: relative;
-    left: 94.8%;
-    bottom: -42%
+    left: -0.2%;
+    bottom: -43%
 }
 .chat-room.choose {
     align-items: center;
