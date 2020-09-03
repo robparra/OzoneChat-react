@@ -61,7 +61,8 @@ export default class LoginForm extends Component {
 						value={nickname}
 						onChange={this.handleChange}
 						placeholder={'ChatUsername'}
-						/><button id="submit"
+						/>
+						<button id="submit"
 						type = "submit"
 						className = "login"
 

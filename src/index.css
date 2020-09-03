@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
 html, body, #root {
     margin: 0;
     padding: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Aldrich", sans-serif;
     height: 100%;
-    background:#fff;
+    background: #fff;
     width: 65%;
     position: relative;
     right: -34%
@@ -11,16 +12,16 @@ html, body, #root {
 input, textarea {
     font-family: Arial
 }
-#button-chat{
+#button-chat {
     position: absolute;
     right: 53%
 }
-#button-chatlogin{
+#button-chatlogin {
     position: absolute;
     right: 53%;
     top: 0%
 }
-#submit{
+#submit {
     width: 100%;
     box-sizing: border-box;
     font-size: 1em;
@@ -47,7 +48,7 @@ input, textarea {
     flex-direction: column;
     position: relative;
     right: -20%;
-    top :-45%;
+    top: -45%;
 }
 .login-form h2 {
     font-size: 5vw
@@ -89,7 +90,7 @@ input, textarea {
 }
 #side-bar {
     box-sizing: border-box;
-    width: 69%;
+    width: 68%;
     height: 50%;
     display: grid;
     justify-content: stretch;
@@ -98,7 +99,6 @@ input, textarea {
     right: -52%;
     bottom: 7%;
     z-index: 3;
-    
 }
 #side-bar .heading {
     box-sizing: border-box;
@@ -107,7 +107,7 @@ input, textarea {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background: #000
+    background: #cfd2d3
 }
 #side-bar .side-bar-select {
     display: flex;
@@ -115,7 +115,7 @@ input, textarea {
     align-items: center
 }
 #side-bar .side-bar-select__option {
-    background: #000;
+    background: #6325C9;
     width: 100%;
     height: 100%;
     display: flex;
@@ -125,10 +125,12 @@ input, textarea {
     cursor: pointer
 }
 #side-bar .side-bar-select__option.active {
+    border-radius: 0px;
+    box-shadow: inset 5px 5px 10px #535454, inset -5px -5px 10px #ffffff;
     background: #dfdfe8
 }
 #side-bar .search {
-    background: #000;
+    background: #cfd2d3;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -141,22 +143,23 @@ input, textarea {
     padding-right: 20px
 }
 #side-bar .search .search-icon {
-    margin-right: 15px;
+    border-radius: 82px;
+    box-shadow: 16px 16px 32px #898b8b, -16px -16px 32px #ffffff;
     cursor: pointer
 }
 #side-bar .search input {
     width: 92%;
-    background: #000;
+    background: #cfd2d3;
     flex-grow: 1;
     box-sizing: border-box;
     border: none;
-    color: #cac8ee
+    color: #000
 }
 #side-bar .search input:focus {
     outline: none
 }
 #side-bar .search input::placeholder {
-    color: #cac8ee;
+    color: #000;
     opacity: .6
 }
 #side-bar .search .plus {
@@ -184,7 +187,7 @@ input, textarea {
 }
 #side-bar .users {
     overflow-y: scroll;
-    background: #000;
+    background: #cfd2d3;
     flex-grow: 1
 }
 #side-bar .users::-webkit-scrollbar-track {
@@ -206,6 +209,8 @@ input, textarea {
     padding: 18px 16px
 }
 #side-bar .users .user.active, #side-bar .users .user:hover {
+    box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
+    box-sizing: border-box;
     background: #dfdfe8
 }
 #side-bar .users .user:hover:not(.active) {
@@ -227,8 +232,11 @@ input, textarea {
     justify-content: center
 }
 #side-bar .current-user {
+    border-radius: 0px;
+    background: #cfd2d3;
+    box-shadow: inset 5px 5px 10px #535454, inset -5px -5px 10px #ffffff;
     align-items: center;
-    background: #000;
+    background: #cfd2d3;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -241,27 +249,29 @@ input, textarea {
     cursor: pointer;
     display: flex;
     justify-content: center;
-    font-size: 1em
+    /*font-size: 1em*/
 }
-.chat-show .chatOpen{
+.chat-show .chatOpen {
     width: 100%;
     height: 100%
 }
-#div-s{
-   position: absolute;
-   top: 0;
-   right: 0;
-   width: 10%;
-   height: 10%; 
+#div-s {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 10%;
 }
 .chat-header {
-    background: #000;
-    box-shadow: 0px 6px 5px -2px rgba(225, 225, 225, 0.7);
+    background: #cfd2d3;
+    box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 16px
+    padding: 18px 16px;
+    width: 102%;
+    z-index: 3;
 }
 .chat-header .user-info {
     align-items: center;
@@ -304,9 +314,9 @@ input, textarea {
     display: grid;
     grid-template: 8vh 1fr 8vh / 100%;
     height: 57%;
-    width: 100%;
+    width: 98%;
     position: relative;
-    left: -0.2%;
+    left: 0.8%;
     bottom: -43%
 }
 .chat-room.choose {
@@ -356,6 +366,9 @@ input, textarea {
     order: 1
 }
 .message-container .data {
+    border-radius: 50px;
+    box-shadow: inset 5px 5px 10px #535454, inset -5px -5px 10px #ffffff;
+    background: #cfd2d3;
     order: 2;
     height: 100%;
     margin-left: 25px
@@ -366,7 +379,9 @@ input, textarea {
     text-align: right
 }
 .message-container .message {
-    background: #cfecfe;
+    border-radius: 50px;
+    box-shadow: inset 5px 5px 10px #535454, inset -5px -5px 10px #ffffff;
+    background: #cfd2d3;
     border-radius: 5px;
     border-top-left-radius: 0;
     box-sizing: border-box;
@@ -386,9 +401,9 @@ input, textarea {
 .message-container .message::before {
     border-bottom-color: transparent;
     border-left-color: transparent;
-    border-right-color: #cfecfe;
+    border-right-color: #cfd2d3;
     border-style: solid;
-    border-top-color: #cfecfe;
+    border-top-color: #cfd2d3;
     border-width: 4px;
     content: '';
     height: 0;
@@ -406,6 +421,7 @@ input, textarea {
     margin-left: 25px
 }
 .message-container.right .data {
+    box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
     margin-left: 0;
     order: 1
 }
@@ -413,14 +429,15 @@ input, textarea {
     display: none
 }
 .message-container.right .message {
-    background: #398bf7;
+    background: #cfd2d3;
+    box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
     color: #000;
     border-top-right-radius: 0;
     border-top-left-radius: 5px
 }
 .message-container.right .message::before {
-    border-top-color: #398bf7;
-    border-left-color: #398bf7;
+    border-top-color: #cfd2d3;
+    border-left-color: #cfd2d3;
     border-right-color: transparent;
     left: auto;
     right: -7px
@@ -430,6 +447,8 @@ input, textarea {
     margin: 10px 15px
 }
 .message-input {
+    background: #cfd2d3;
+    box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
     background: white;
     color: #484d79;
     box-sizing: border-box;
@@ -440,7 +459,7 @@ input, textarea {
 }
 .message-input .message-form {
     height: 100%;
-    width: 90%;
+    width: 94%;
     display: flex;
     justify-content: space-between
 }
@@ -450,7 +469,7 @@ input, textarea {
     box-sizing: border-box;
     width: 80%;
     height: 100%;
-    border: none;
+    /*border: none;*/
     font-size: 16px
 }
 .message-input .message-form .form-control::-webkit-scrollbar-track {
@@ -468,15 +487,21 @@ input, textarea {
     outline: none
 }
 .message-input .message-form .send {
-    width: 31%;
+    background: #cfd2d3;
+    box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
+    width: 30%;
     box-sizing: border-box;
-    font-size: 1.25em;
+    /*font-size: 1.25em;*/
     text-align: center;
     border: none;
     height: 100%;
-    color: #fff;
-    background: #388af6;
-    transition: all .35s ease-out
+    color: #388af6;
+    background: #6325C9;
+    transition: all .35s ease-out;
+    box-shadow: inset -6px -6px 10px rgba(255, 255, 255, 0.5),
+                inset 6px 6px 10px rgba(70, 70, 70, 0.12),
+                inset -6px -6px 10px rgba(70, 70, 70, 0.12),
+                inset 6px 6px 10px rgba(255, 255, 255, 0.5);
 }
 .message-input .message-form .send:disabled {
     opacity: .2;

@@ -3,6 +3,7 @@ import FASearch from 'react-icons/lib/fa/search'
 import SideBarOption from './SideBarOption'
 import { last, get, differenceBy } from 'lodash' 
 import { createChatNameFromUsers } from '../../Factories'
+import MdEject from 'react-icons/lib/md/eject'
 
 export default class SideBar extends Component{
 	static type = {
@@ -93,7 +94,7 @@ export default class SideBar extends Component{
 					<div className="current-user">
 						<span>{user.name}</span>
 						<div onClick={()=>{logout()}} title="Logout" className="logout">
-							leave chat	
+							<MdEject/>	
 						</div>
 					</div>
 			</div>
