@@ -168,6 +168,11 @@ export default class ChatContainer extends Component {
 		socket.emit(MESSAGE_SENT, {chatId, message} )
 	}
 
+	// sendImage = (chatId, image)=>{
+	// 	const { socket } = this.props
+	// 	socket.emit(MESSAGE_SENT, {chatId, image} )
+	// }
+
 	/*
 	*	Sends typing status to server.
 	*	chatId {number} the id of the chat being typed in.
@@ -219,6 +224,11 @@ export default class ChatContainer extends Component {
 											this.sendMessage(activeChat.id, message)
 										}
 									}
+									// sendImage={
+									// 	(image)=>{
+									// 		this.sendMessage(activeChat.id, image)
+									// 	}
+									// }
 									sendTyping={
 										(isTyping)=>{
 											this.sendTyping(activeChat.id, isTyping)

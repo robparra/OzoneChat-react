@@ -4,11 +4,12 @@ const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED,
 		LOGOUT, COMMUNITY_CHAT, MESSAGE_RECIEVED, MESSAGE_SENT,
 		TYPING, PRIVATE_MESSAGE, NEW_CHAT_USER  } = require('../Events')
 
-const { createUser, createMessage, createChat } = require('../Factories')
+const { createUser, createMessage, createImage, createChat } = require('../Factories')
 
 let connectedUsers = { }
 
 let communityChat = createChat({ isCommunity:true })
+
 
 module.exports = function(socket){
 					
@@ -16,6 +17,8 @@ module.exports = function(socket){
 	console.log("Socket Id:" + socket.id);
 
 	let sendMessageToChatFromUser;
+
+	// let sendImageToChatFromUser;
 
 	let sendTypingFromUser;
 
@@ -72,6 +75,10 @@ module.exports = function(socket){
 		sendMessageToChatFromUser(chatId, message)
 	})
 
+	// socket.on(MESSAGE_SENT, ({chatId, image})=>{
+	// 	sendImageToChatFromUser(chatId, image)
+	// })
+
 	socket.on(TYPING, ({chatId, isTyping})=>{
 		sendTypingFromUser(chatId, isTyping)
 	})
@@ -123,6 +130,11 @@ function sendMessageToChat(sender){
 	}
 }
 
+// function sendImageToChat(sender){
+// 	return (chatId, image)=>{
+// 		io.emit(`${MESSAGE_RECIEVED}-${chatId}`, createImage({image, sender}))
+// 	}
+// }
 /*
 * Adds user to list passed in.
 * @param userList {Object} Object with key value pairs of users

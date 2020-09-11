@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import Dropzone from 'react-dropzone';
+import Axios from 'axios'
+import MdFileUpload from 'react-icons/lib/md/file-upload'
 
 export default class MessageInput extends Component {
 	
 	constructor(props) {
 	  super(props);
+	  this.ChooseImage=this.ChooseImage.bind(this)
 	
 	  this.state = {
 	  	message:"",
@@ -60,6 +64,32 @@ export default class MessageInput extends Component {
 		}
 	}
 
+	ChooseImage=(event)=>{
+		 document.getElementById('imageFile').click();
+		 //console.log(event.target.files[0])
+	}
+
+	SendImage=(event)=>{
+		var file = event.target.files[0];
+
+		// let file = this.files[0];
+		// if(!file.type.march("image.*")){
+		// 	alert("Please select image only");
+		// }else{
+			// alert("image send")
+		// }
+		
+		var reader = new FileReader();
+
+		reader.addEventListener("load", function(){
+			alert(reader.result);
+		}, false);
+
+		if (file) {
+			reader.readAsDataURL(file);
+		}
+	}
+
 
 	render() {
 		const { message } = this.state
@@ -84,6 +114,7 @@ export default class MessageInput extends Component {
 							}
 						}
 						/>
+						
 					<button
 						disabled = { message.length < 1 }
 						type = "submit"
@@ -91,7 +122,10 @@ export default class MessageInput extends Component {
 
 					> Send </button>
 				</form>
-
+				<a href="#" className="dropdown" onClick={this.ChooseImage}>
+				<MdFileUpload/>
+				<input type="file" id="imageFile" onChange={this.SendImage} accept="image/*" />
+				</a>
 			</div>
 		);
 	}

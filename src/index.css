@@ -3,6 +3,7 @@ html, body, #root {
     margin: 0;
     padding: 0;
     font-family: "Aldrich", sans-serif;
+    font-size: 13px;
     height: 100%;
     background: #fff;
     width: 65%;
@@ -10,11 +11,14 @@ html, body, #root {
     right: -34%
 }
 input, textarea {
-    font-family: Arial
+    font-family: Aldrich,  sans-serif
 }
 #button-chat {
     position: absolute;
     right: 53%
+}
+#button-upload{
+    height: 50px
 }
 #button-chatlogin {
     position: absolute;
@@ -29,7 +33,7 @@ input, textarea {
     border: none;
     height: 100%;
     color: #fff;
-    background: #388af6;
+    background: #6325C9;
     transition: all .35s ease-out;
     position: relative;
     right: -10%
@@ -459,7 +463,7 @@ input, textarea {
 }
 .message-input .message-form {
     height: 100%;
-    width: 94%;
+    width: 100%;
     display: flex;
     justify-content: space-between
 }
@@ -467,10 +471,10 @@ input, textarea {
     resize: none;
     padding-left: 15px;
     box-sizing: border-box;
-    width: 80%;
+    width: 55%;
     height: 100%;
     /*border: none;*/
-    font-size: 16px
+    font-size: 13px
 }
 .message-input .message-form .form-control::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -489,7 +493,7 @@ input, textarea {
 .message-input .message-form .send {
     background: #cfd2d3;
     box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
-    width: 30%;
+    width: 26%;
     box-sizing: border-box;
     /*font-size: 1.25em;*/
     text-align: center;
@@ -506,4 +510,22 @@ input, textarea {
 .message-input .message-form .send:disabled {
     opacity: .2;
     background: #5d5d8a
+}
+.Dropzone{
+    width: 20%;
+    height: 0%;
+    position: relative;
+    bottom: 100%;
+    left: 55%
+}
+#imageFile{
+    display: none;
+}
+.dropdown{
+     width: 20%;
+    height: 0%;
+    position: relative;
+    bottom: 70%;
+    left: 60%;
+    position: absolute;
 }

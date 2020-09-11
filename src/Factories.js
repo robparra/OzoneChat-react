@@ -38,6 +38,16 @@ const createMessage = ({message = "", sender = ""} = { })=>(
 
 	)
 
+// const createImage = ({image = "", sender = ""} = { })=>(
+// 		{
+// 			id:uuidv4(),
+// 			time:getTime(new Date(Date.now())),
+// 			image,
+// 			sender	
+// 		}
+
+// 	)
+
 /*
 *	createChat
 *	Creates a Chat object
@@ -84,6 +94,7 @@ const getTime = (date)=>{
 
 module.exports = {
 	createMessage,
+	// createImage,
 	createChat,
 	createUser,
 	createChatNameFromUsers
