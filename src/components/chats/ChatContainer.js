@@ -163,15 +163,11 @@ export default class ChatContainer extends Component {
 	*	@param chatId {number}  The id of the chat to be added to.
 	*	@param message {string} The message to be added to the chat.
 	*/
-	sendMessage = (chatId, message)=>{
+	sendMessage = (chatId, message, isFile)=>{
+		console.log("sen message: ", message, "is file: ", isFile)
 		const { socket } = this.props
-		socket.emit(MESSAGE_SENT, {chatId, message} )
+		socket.emit(MESSAGE_SENT, {chatId, message, isFile} )
 	}
-
-	// sendImage = (chatId, image)=>{
-	// 	const { socket } = this.props
-	// 	socket.emit(MESSAGE_SENT, {chatId, image} )
-	// }
 
 	/*
 	*	Sends typing status to server.
@@ -220,15 +216,11 @@ export default class ChatContainer extends Component {
 									/>
 								<MessageInput 
 									sendMessage={
-										(message)=>{
-											this.sendMessage(activeChat.id, message)
+										(message, isFile)=>{
+											console.log("message input: ", message)
+											this.sendMessage(activeChat.id, message, isFile)
 										}
 									}
-									// sendImage={
-									// 	(image)=>{
-									// 		this.sendMessage(activeChat.id, image)
-									// 	}
-									// }
 									sendTyping={
 										(isTyping)=>{
 											this.sendTyping(activeChat.id, isTyping)

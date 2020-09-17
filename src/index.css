@@ -457,6 +457,15 @@ input, textarea {
     text-align: right;
     margin: 10px 15px
 }
+.file-upload>input {
+    display: none;
+}
+.file-upload {
+    position: relative;
+    width: -moz-min-content;
+    bottom: -11%;
+    height: 70%;
+}
 .message-input {
     background: #cfd2d3;
     box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
@@ -481,7 +490,7 @@ input, textarea {
     resize: none;
     padding-left: 15px;
     box-sizing: border-box;
-    width: 55%;
+    width: 60%;
     height: 100%;
     /*border: none;*/
     font-size: 13px;
@@ -506,7 +515,7 @@ input, textarea {
 .message-input .message-form .send {
     background: #cfd2d3;
     box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
-    width: 26%;
+    width: 28%;
     box-sizing: border-box;
     /*font-size: 1.25em;*/
     text-align: center;
@@ -515,7 +524,10 @@ input, textarea {
     color: #388af6;
     background: #6325C9;
     transition: all .35s ease-out;
-    box-shadow: inset -6px -6px 10px rgba(255, 255, 255, 0.5), inset 6px 6px 10px rgba(70, 70, 70, 0.12), inset -6px -6px 10px rgba(70, 70, 70, 0.12), inset 6px 6px 10px rgba(255, 255, 255, 0.5);
+    box-shadow: inset -6px -6px 10px rgba(255, 255, 255, 0.5),
+                inset 6px 6px 10px rgba(70, 70, 70, 0.12),
+                inset -6px -6px 10px rgba(70, 70, 70, 0.12),
+                inset 6px 6px 10px rgba(255, 255, 255, 0.5);
     border-radius: 0px 0px 75px 0px;
     -moz-border-radius: 0px 0px 75px 0px;
     -webkit-border-radius: 0px 0px 75px 0px;

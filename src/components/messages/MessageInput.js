@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import Axios from 'axios'
 import MdFileUpload from 'react-icons/lib/md/file-upload'
+import MdBook from 'react-icons/lib/md/book'
 
 export default class MessageInput extends Component {
 	
 	constructor(props) {
 	  super(props);
 	  this.ChooseImage=this.ChooseImage.bind(this)
+
+	  this.onFileChange=this.onFileChange.bind(this)
+	  this.onFileUpload=this.onFileUpload.bind(this)
 	
 	  this.state = {
 	  	message:"",
-	  	isTyping:false
+	  	isTyping:false,
+	  	selectedFile:null,
+	  	isFile:false
 	  };
 
 	}
@@ -23,7 +29,7 @@ export default class MessageInput extends Component {
 	}
 
 	sendMessage = ()=>{
-		this.props.sendMessage(this.state.message)
+		this.props.sendMessage(this.state.message, this.state.isFile)
 
 	}
 
@@ -69,27 +75,19 @@ export default class MessageInput extends Component {
 		 //console.log(event.target.files[0])
 	}
 
-	SendImage=(event)=>{
-		var file = event.target.files[0];
+	
 
-		// let file = this.files[0];
-		// if(!file.type.march("image.*")){
-		// 	alert("Please select image only");
-		// }else{
-			// alert("image send")
-		// }
-		
-		var reader = new FileReader();
-
-		reader.addEventListener("load", function(){
-			alert(reader.result);
-		}, false);
-
-		if (file) {
-			reader.readAsDataURL(file);
-		}
+	onFileChange(event){
+		this.setState({selectedFile:URL.createObjectURL(event.target.files[0])})
+		this.setState({isFile:true})
 	}
 
+	onFileUpload(){
+		this.props.sendMessage(this.state.selectedFile, this.state.isFile)
+		this.setState({isFile:false})
+		this.setState({selectedFile:""})
+	
+	}
 
 	render() {
 		const { message } = this.state
@@ -114,18 +112,26 @@ export default class MessageInput extends Component {
 							}
 						}
 						/>
-						
+
+				<div className="file-upload">
+						  <label for="imageUpload">
+						    <MdBook/>
+						  </label>
+					<input id="imageUpload" type="file" onChange={this.onFileChange}/>
+						  <label for="fileUpload">
+							<MdFileUpload/>
+						  </label>
+					<input id="fileUpload" onClick={this.onFileUpload} />
+				</div>
+
 					<button
-						disabled = { message.length < 1 }
 						type = "submit"
 						className = "send"
-
-					> Send </button>
+						> Send 
+					</button>
 				</form>
-				<a href="#" className="dropdown" onClick={this.ChooseImage}>
-				<MdFileUpload/>
-				<input type="file" id="imageFile" onChange={this.SendImage} accept="image/*" />
-				</a>
+				
+				
 			</div>
 		);
 	}

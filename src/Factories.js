@@ -28,25 +28,16 @@ const createUser = ({name = "", socketId = null } = {})=>(
 *		message {string}
 *		sender {string}
 */
-const createMessage = ({message = "", sender = ""} = { })=>(
+const createMessage = ({message = "", sender = "", isFile=""} = { })=>(
 		{
 			id:uuidv4(),
 			time:getTime(new Date(Date.now())),
 			message,
-			sender	
+			sender,
+			isFile	
 		}
 
 	)
-
-// const createImage = ({image = "", sender = ""} = { })=>(
-// 		{
-// 			id:uuidv4(),
-// 			time:getTime(new Date(Date.now())),
-// 			image,
-// 			sender	
-// 		}
-
-// 	)
 
 /*
 *	createChat
@@ -94,7 +85,6 @@ const getTime = (date)=>{
 
 module.exports = {
 	createMessage,
-	// createImage,
 	createChat,
 	createUser,
 	createChatNameFromUsers

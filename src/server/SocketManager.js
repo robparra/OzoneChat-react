@@ -4,7 +4,7 @@ const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED,
 		LOGOUT, COMMUNITY_CHAT, MESSAGE_RECIEVED, MESSAGE_SENT,
 		TYPING, PRIVATE_MESSAGE, NEW_CHAT_USER  } = require('../Events')
 
-const { createUser, createMessage, createImage, createChat } = require('../Factories')
+const { createUser, createMessage,  createChat } = require('../Factories')
 
 let connectedUsers = { }
 
@@ -71,13 +71,9 @@ module.exports = function(socket){
 		callback(communityChat)
 	})
 
-	socket.on(MESSAGE_SENT, ({chatId, message})=>{
-		sendMessageToChatFromUser(chatId, message)
+	socket.on(MESSAGE_SENT, ({chatId, message, isFile})=>{
+		sendMessageToChatFromUser(chatId, message, isFile)
 	})
-
-	// socket.on(MESSAGE_SENT, ({chatId, image})=>{
-	// 	sendImageToChatFromUser(chatId, image)
-	// })
 
 	socket.on(TYPING, ({chatId, isTyping})=>{
 		sendTypingFromUser(chatId, isTyping)
@@ -125,16 +121,11 @@ function sendTypingToChat(user){
 * @return function(chatId, message)
 */
 function sendMessageToChat(sender){
-	return (chatId, message)=>{
-		io.emit(`${MESSAGE_RECIEVED}-${chatId}`, createMessage({message, sender}))
+	return (chatId, message, isFile)=>{
+		io.emit(`${MESSAGE_RECIEVED}-${chatId}`, createMessage({message, sender, isFile}))
 	}
 }
 
-// function sendImageToChat(sender){
-// 	return (chatId, image)=>{
-// 		io.emit(`${MESSAGE_RECIEVED}-${chatId}`, createImage({image, sender}))
-// 	}
-// }
 /*
 * Adds user to list passed in.
 * @param userList {Object} Object with key value pairs of users
