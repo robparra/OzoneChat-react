@@ -383,6 +383,7 @@ input, textarea {
     height: 100%;
     margin-left: 25px;
     word-break: break-all;
+    -webkit-border-radius: 20px 20px 20px 20px;
 }
 .message-container .name {
     font-size: .65em;
@@ -399,7 +400,8 @@ input, textarea {
     color: #000;
     height: 100%;
     padding: 10px 15px;
-    position: relative
+    position: relative;
+    -webkit-border-radius: 20px 20px 20px 20px;
 }
 @keyframes show {
     0% {
@@ -434,7 +436,8 @@ input, textarea {
 .message-container.right .data {
     box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
     margin-left: 0;
-    order: 1
+    order: 1;
+    -webkit-border-radius: 20px 20px 20px 20px;
 }
 .message-container.right .name {
     display: none
@@ -444,7 +447,8 @@ input, textarea {
     box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
     color: #000;
     border-top-right-radius: 0;
-    border-top-left-radius: 5px
+    border-top-left-radius: 5px;
+    -webkit-border-radius: 20px 20px 20px 20px;
 }
 .message-container.right .message::before {
     border-top-color: #cfd2d3;
