@@ -78,3 +78,75 @@ export default class LoginForm extends Component {
 		);
 	}
 }
+
+// import React, { useState } from 'react';
+// import { VERIFY_USER } from '../Events'
+
+// function LoginFormFn(props) {
+
+// 	const [state, setState]= useState({
+// 		nickname:(""),
+// 	  	showContent:(true)
+// 	}) 
+
+// 	// const [nickname,setNickname]= useState('')
+
+// 	const [error, setError]= useState('')
+
+// const chatButton = (event) =>{
+// 	event.preventDeafault()
+// 	setState({...state, showContent:!state.showContent})
+// }
+
+// const setUser = (user, isUser) =>{
+// 	if (isUser) {
+// 		props.setUser(user:user)
+// 	}else{
+// 		props.setUser(user:user)
+// 	}
+// }
+
+// const handleSubmit = (e) =>{
+// 	e.preventDefault()
+// 	const { socket } = props
+// 	const { nickname } = state
+// 	socket.emit(VERIFY_USER, nickname, setUser)
+// }
+
+// const handleChange = (e) =>{
+// 	setState({...state, nickname:e.target.value})
+// }
+
+// // const setError = (e) =>{
+// // 	setState({...state, error:''})
+// // }
+
+// return (
+// 			<div className="login" ><div className="login" >
+// 			{state.showContent === true ?
+// 				<form onSubmit={handleSubmit} className="login-form" >
+// 					<input
+// 						ref={(input)=>{ state.textInput = input }} 
+// 						type="text"
+// 						id="nickname"
+// 						value={state.nickname}
+// 						onChange={handleChange}
+// 						placeholder={'ChatUsername'}
+// 						/>
+// 						<button id="submit"
+// 						type = "submit"
+// 						className = "login"
+
+// 					> login </button>
+// 						<div className="error">{error ? error:null}</div>
+						
+
+// 				</form>
+// 			:''}
+// 		</div><button id="button-chatlogin" onClick={state.chatButtom}>Chat</button>
+//  </div>
+			
+// 		);
+	
+// }
+// export default (LoginFormFn);
