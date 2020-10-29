@@ -201,6 +201,8 @@ function MessageInputFn(props){
     const onFileChange = (event) =>{
     	setState({...state, selectedFile:URL.createObjectURL(event.target.files[0])})
 		setState({...state, isFile:true})
+		console.log("selected file PC: ", event.target.files[0])
+		console.log("selected file messageInput: ", state.selectedFile)
     }
 
     const onFileUpload = () =>{
@@ -231,22 +233,22 @@ function MessageInputFn(props){
 						}
 						/>
 
-				<div className="file-upload">
-						  <label for="imageUpload">
-						    <MdBook/>
-						  </label>
-					<input id="imageUpload" type="file" onChange={onFileChange}/>
-						  <label for="fileUpload">
-							<MdFileUpload/>
-						  </label>
-					<input id="fileUpload" onClick={onFileUpload} />
-				</div>
+					<div className="file-upload">
+							<label htmlFor="imageUpload">
+								<MdBook/>
+							</label>
+						<input id="imageUpload" type="file" onChange={onFileChange}/>
+							<label htmlFor="fileUpload">
+								<MdFileUpload/>
+							</label>
+						<input id="fileUpload" onClick={onFileUpload} />
+					</div>
 
-					<button
-						type = "submit"
-						className = "send"
-						> Send 
-					</button>
+						<button
+							type = "submit"
+							className = "send"
+							> Send 
+						</button>
 				</form>
 				
 				

@@ -91,7 +91,9 @@ import React, { useState, useEffect   } from 'react';
 import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT, VERIFY_USER } from '../Events'
 import LoginForm from './LoginForm'
+import LoginFormFn from './LoginFormFn'
 import ChatContainer from './chats/ChatContainer'
+import ChatContainerFn from './chats/ChatContainerFn'
 //import chatManager from './chatManager'
 
 const socketUrl = "http://localhost:3231"
@@ -158,9 +160,9 @@ function LayoutFn() {
 		<div className="container">
 			{
 				!state.user ?	
-				<LoginForm socket={state.socket} setUser={setUser} />
+				<LoginFormFn socket={state.socket} setUser={setUser} />
 				:
-				<ChatContainer socket={state.socket} user={state.user} logout={logout}/>
+				<ChatContainerFn socket={state.socket} user={state.user} logout={logout}/>
 			}
 		</div>
 
