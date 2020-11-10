@@ -6,7 +6,7 @@ import MessageInput from '../messages/MessageInput'
 import withChatContainer from './withChatContainer';
 
  const ChatContainerNew = props => {
-
+	
     return (
 		
 		<div className="container">

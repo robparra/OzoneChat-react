@@ -35,13 +35,19 @@ const withChatContainer = Component => props => {
 	}, [])
  
  	const initSocket = (socket)=>{
+		console.log("initSocket: ", socket) 
 		socket.emit(COMMUNITY_CHAT, resetChat)
+		
 		socket.on(PRIVATE_MESSAGE, addChat)
+		
 		socket.on('connect', ()=>{
-		  socket.emit(COMMUNITY_CHAT, resetChat)
+			console.log ("entre a socket.on connect")
+			socket.emit(COMMUNITY_CHAT, resetChat)
 		})
+
 		socket.on(USER_CONNECTED, (users)=>{
 		//	setState({...state, users: values(users)})
+		    console.log("entre a spcket.on USER_CONNECTED users: ", users)
 			setState(state => {	return {...state, users: values(users)}	})
 		})
 		socket.on(USER_DISCONNECTED, (users)=>{
@@ -61,7 +67,7 @@ const withChatContainer = Component => props => {
 
  	}
  	const addUserToChat = ({ chatId, newUser }) => {
-		const { chats } = state
+		const {chats } = state
 		const newChats = chats.map( chat => {
 			if(chat.id === chatId){
 				return Object.assign({}, chat, { users: [ ...chat.users, newUser ] })
@@ -69,7 +75,7 @@ const withChatContainer = Component => props => {
 			return chat
 		})
 	//	setState({...state, chats:newChats })
-		console.log('addUserToChat value: ', newChats)
+		
 		setState(state => {	return {...state, chats:newChats}	})
 	 }
 	 
@@ -80,27 +86,27 @@ const withChatContainer = Component => props => {
 				return Object.assign({}, chat, { users: newUsers })
 		})
 	//	setState({...state, chats: newChats })
-	    console.log('removeUsersFromChat value: ', newChats)
+	   
 		setState(state => {	return {...state, chats:newChats}	})
  	}
 
  	const resetChat =  (chat)=>{
+	//	 console.log("resetChat - chat parameter: ", chat)
  		return addChat(chat, true)
 	 }
 	 
 
  	const addChat = (chat, reset = false)=>{
+	//	 console.log("addChat chat - parameter: ", chat)
 		const { socket } = props		
-		const { chats} = state
-
-		const newChats = reset ? [chat] : [...chats, chat]   
-		const newActiveChat = reset ?  chat : state.activeChat 
-		 
-	//	setState({...state, chats:newChats, activeChat:newActiveChat})
-		setState(state => {	return {...state,  chats:newChats, activeChat:newActiveChat}})
+		const { chats, activeChat} = state
+	//	console.log("addChat reset - pameter: ", reset)
 		
-		console.log("state after: ", state)
-	
+		const newChats = reset ? [chat] : [...chats, chat]  
+		const newActiveChat = reset ?  chat : activeChat 
+
+		setState(state =>  { return {...state,  chats:newChats, activeChat:newActiveChat}}) 
+
 		const messageEvent = `${MESSAGE_RECIEVED}-${chat.id}`
 		const typingEvent = `${TYPING}-${chat.id}`
 
@@ -108,27 +114,26 @@ const withChatContainer = Component => props => {
 		socket.on(messageEvent, addMessageToChat(chat.id))
 		
 	 }
+
 	   
  
  	const addMessageToChat = (chatId)=>{
-		
+		console.log("addMessageToChat state: ", state)
 		return message => {
 			const { chats } = state
-			console.log("addMessageToChat chats: ", chats)
+		
 			let newChats = chats.map((chat)=>{
 				if(chat.id === chatId)
 					chat.messages.push(message)
 				return chat
 			})
 
-		//	setState({...state, chats:newChats})
-		console.log("addMessageToChat newChats: ", newChats) 
 			setState(state => {	return {...state, chats:newChats}	})		
 		}
  	}
 
  	const updateTypingInChat = (chatId)=> {
-		console.log("updateTypingChat: ", chatId)
+		console.log("updateTypingInChat state: ", state)
 		return ({isTyping, user})=>{
 			if(user !== props.user.name){
 
@@ -144,9 +149,8 @@ const withChatContainer = Component => props => {
 					}
 					return chat
 				})
-				//	setState({...state, chats:newChats})
-				
-					setState(state => {	return {...state, chats:newChats}	})
+			
+				setState(state => {	return {...state, chats:newChats}	})
 				
 			}
 		}
@@ -154,7 +158,6 @@ const withChatContainer = Component => props => {
  	}
 
  	const sendMessage = (chatId, message, isFile)=>{
-		 console.log("snedMessage: ", chatId, message, isFile)
 		const { socket } = props
   		socket.emit(MESSAGE_SENT, {chatId, message, isFile} )
  	}
@@ -165,15 +168,9 @@ const withChatContainer = Component => props => {
  	}
 
  	const setActiveChat = (activeChat)=>{
-		
-		// setState({...state, activeChat: activeChat})
-		 setState(state => {	return {...state, activeChat:activeChat}	})
-		 
+		 setState(state => {return {...state, activeChat:activeChat}}) 
 	 }
 	 
-	
-	 console.log("chatContainer states: ", state)
-
     const chatContainerActions = {
         chatButtom,
         sendMessage,
@@ -181,7 +178,7 @@ const withChatContainer = Component => props => {
 		setActiveChat,
 		sendOpenPrivateMessage
     }
-
+	console.log("chatContainer states: ", state)
     return (
         <Component {...chatContainerActions} {...state}{...props} />
     )
