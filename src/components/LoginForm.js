@@ -85,24 +85,19 @@ import { VERIFY_USER } from '../Events'
  function LoginFormFn(props) {
 
  	const [state, setState]= useState({
-         nickname:(""),
-         error:(""),
+         nickname:"",
+         error:"",
  	  	showContent:(true)
  	}) 
 
- const inputRef = useRef(null);	
-
-
-// 	// const [nickname,setNickname]= useState('')
-
-// 	const [error, setError]= useState('')
+ const textInput = useRef("");	
 
  const chatButton = (event) =>{
  	event.preventDeafault()
  	setState({...state, showContent:!state.showContent})
  }
 
- const setUser = (user, isUser) =>{
+ const setUser = ({user, isUser}) =>{
  	if (isUser) {
  		props.setUser(user)
  	}else{
@@ -113,7 +108,7 @@ import { VERIFY_USER } from '../Events'
  const handleSubmit = (e) =>{
  	e.preventDefault()
  	const { socket } = props
- 	const { nickname } = state.nickname
+ 	const { nickname } = state
  	socket.emit(VERIFY_USER, nickname, setUser)
  }
 
@@ -121,16 +116,17 @@ import { VERIFY_USER } from '../Events'
  	setState({...state, nickname:e.target.value})
  }
 
- // const setError = (error) =>{
- // 	setState({...state, error})
- // }
+ const setError = (error) =>{
+ 	setState({...state, error})
+ 	console.log("error: ", state.error)
+ }
 
  return (
  			<div className="login" ><div className="login" >
  			{state.showContent === true ?
  				<form onSubmit={handleSubmit} className="login-form" >
  					<input
- 						ref={inputRef} 
+ 						ref={textInput} 
  						type="text"
  						id="nickname"
  						value={state.nickname}

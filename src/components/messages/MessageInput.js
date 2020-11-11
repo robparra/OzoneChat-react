@@ -139,18 +139,24 @@
 
 
 import React, { useState, useEffect, useRef } from 'react';
-import Dropzone from 'react-dropzone';
-import Axios from 'axios'
 import MdFileUpload from 'react-icons/lib/md/file-upload'
 import MdBook from 'react-icons/lib/md/book'
+import Picker from 'emoji-picker-react';
 
 function MessageInputFn(props){
 	const[state, setState]=useState({
 		message:"",
 	  	isTyping:false,
 	  	selectedFile:null,
-	  	isFile:false
+	  	isFile:false,
+	  	chosenEmoji:null,
+	  	setChosenEmoji:null
 	})
+
+  
+  const onEmojiClick = (event, emojiObject) => {
+    setState(...state, emojiObject:emojiObject);
+  }
 
 	const inputRef = useRef(null);
 
@@ -209,6 +215,8 @@ function MessageInputFn(props){
 		setState({...state, selectedFile:""})
     }
 
+  
+
     return (
 			<div className="message-input">
 				<form 
@@ -223,7 +231,7 @@ function MessageInputFn(props){
 						value = { state.message }
 						autoComplete = {'off'}
 						placeholder = "Type here..."
-						onKeyUp = { e => { e.keyCode !== 13 && sendTyping() } }
+						onKeyUp = { e => { e.keyUp !== 13 && sendTyping() } }
 						onChange = {
 							({target})=>{
 								setState({message:target.value})
@@ -242,6 +250,8 @@ function MessageInputFn(props){
 					<input id="fileUpload" onClick={onFileUpload} />
 				</div>
 
+		
+
 					<button
 						type = "submit"
 						className = "send"
@@ -254,4 +264,13 @@ function MessageInputFn(props){
 		);
 }
 
-export default (MessageInputFn);
+export default (MessageInputFn);	
+
+	// <div>
+    //   {state.chosenEmoji ? (
+    //     <span>You chose: {state.chosenEmoji.emoji}</span>
+    //   ) : (
+    //     <span>No emoji Chosen</span>
+    //   )}
+    //   <Picker onEmojiClick={onEmojiClick} />
+    // </div>
