@@ -153,8 +153,7 @@ function MessageInputFn(props){
 	})
 
 	const inputRef = useRef(null);
-
-
+    
 	const handleSubmit = (e) =>{
 		e.preventDefault()
 		sendMessage()
@@ -228,7 +227,7 @@ function MessageInputFn(props){
 						onKeyUp = { e => { e.keyCode !== 13 && sendTyping() } }
 						onChange = {
 							({target})=>{
-								setState({message:target.value})
+								setState({...state, message:target.value})
 							}
 						}
 						/>
