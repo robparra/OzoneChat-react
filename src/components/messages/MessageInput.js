@@ -153,7 +153,7 @@ function MessageInputFn(props){
 	})
 
 	const inputRef = useRef(null);
-    
+	    
 	const handleSubmit = (e) =>{
 		e.preventDefault()
 		sendMessage()
@@ -165,49 +165,46 @@ function MessageInputFn(props){
 	}
 
 	useEffect(() => {      
-        stopCheckingTyping()
+		return () => {
+			stopCheckingTyping()
+        }
     }, [])
 
     const sendTyping = () =>{
-    	state.lastUpdateTime = Date.now()
+    	const lastUpdateTime = Date.now()
 		if(!state.isTyping){
 			setState({...state, isTyping:true})
 			props.sendTyping(true)
-			startCheckingTyping()
+			startCheckingTyping(lastUpdateTime)
 		}
     }
 
-    const startCheckingTyping = () =>{
-    	state.typingInterval = setInterval(()=>{
-			if((Date.now() - state.lastUpdateTime) > 300){
+    const startCheckingTyping = (lastUpdateTime) =>{
+    	const typingInterval = setInterval(()=>{
+			if((Date.now() - lastUpdateTime) > 300){
 				setState({...state, isTyping:false})
-				stopCheckingTyping()
+				stopCheckingTyping(typingInterval)
 			}
 		}, 300)
     }
 
-    const stopCheckingTyping = () =>{
-    	if(state.typingInterval){
-			clearInterval(state.typingInterval)
+    const stopCheckingTyping = (typingInterval) =>{
+    	if(typingInterval){
+			clearInterval(typingInterval)
 			props.sendTyping(false)
 		}
     }
 
-    const ChooseImage = (event) =>{
-    	document.getElementById('imageFile').click();
-    }
-
     const onFileChange = (event) =>{
-    	setState({...state, selectedFile:URL.createObjectURL(event.target.files[0])})
-		setState({...state, isFile:true})
-		console.log("selected file PC: ", event.target.files[0])
-		console.log("selected file messageInput: ", state.selectedFile)
+		const newSeletedFile = URL.createObjectURL(event.target.files[0])
+		setState(state =>  { return {...state,  selectedFile:newSeletedFile, isFile:true}}) 
     }
 
     const onFileUpload = () =>{
     	props.sendMessage(state.selectedFile, state.isFile)
-		setState({...state, isFile:false})
-		setState({...state, selectedFile:""})
+	//	setState({...state, isFile:false})
+	//	setState({...state, selectedFile:""})
+		setState(state =>  { return {...state,  selectedFile:"", isFile:false}})
     }
 
     return (
@@ -224,7 +221,7 @@ function MessageInputFn(props){
 						value = { state.message }
 						autoComplete = {'off'}
 						placeholder = "Type here..."
-						onKeyUp = { e => { e.keyCode !== 13 && sendTyping() } }
+						onKeyUp = { e => { e.key !== 'Enter' && sendTyping() } }
 						onChange = {
 							({target})=>{
 								setState({...state, message:target.value})
