@@ -254,11 +254,53 @@ function MessageInputFn(props){
 
 export default (MessageInputFn);
 
-	// <div>
-    //   {state.chosenEmoji ? (
-    //     <span>You chose: {state.chosenEmoji.emoji}</span>
-    //   ) : (
-    //     <span>No emoji Chosen</span>
-    //   )}
-    //   <Picker onEmojiClick={onEmojiClick} />
-    // </div>
+// import React, { useState, useEffect, useRef } from 'react';
+// import withMessageInput from "./withMessageInput";
+
+// const MessageInput = props =>{
+// 	return (
+// 		<div className="message-input">
+// 				<form 
+// 					onSubmit={ props.handleSubmit }
+// 					className="message-form">
+
+// 					<input 
+// 						id = "message"
+// 						ref = {props.inputRef}
+// 						type = "text"
+// 						className = "form-control"
+// 						value = { props.message }
+// 						autoComplete = {'off'}
+// 						placeholder = "Type here..."
+// 						onKeyUp = { e => { e.key !== 'Enter' && props.sendTyping() } }
+// 						onChange = {
+// 							({target})=>{
+// 								props.setState({...props.state, message:target.value})
+// 							}
+// 						}
+// 						/>
+
+// 					<div className="file-upload">
+// 							<label htmlFor="imageUpload">
+// 								<props.MdBook/>
+// 							</label>
+// 						<input id="imageUpload" type="file" onChange={props.onFileChange}/>
+// 							<label htmlFor="fileUpload">
+// 								<props.MdFileUpload/>
+// 							</label>
+// 						<input id="fileUpload" onClick={props.onFileUpload} />
+// 					</div>
+
+// 						<button
+// 							type = "submit"
+// 							className = "send"
+// 							> Send 
+// 						</button>
+// 				</form>
+				
+				
+// 			</div>
+// 		);
+// }
+
+// export default (withMessageInput(MessageInput));
