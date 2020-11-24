@@ -139,28 +139,21 @@
 
 
 import React, { useState, useEffect, useRef } from 'react';
+import Dropzone from 'react-dropzone';
+import Axios from 'axios'
 import MdFileUpload from 'react-icons/lib/md/file-upload'
 import MdBook from 'react-icons/lib/md/book'
-import Picker from 'emoji-picker-react';
 
 function MessageInputFn(props){
 	const[state, setState]=useState({
 		message:"",
 	  	isTyping:false,
 	  	selectedFile:null,
-	  	isFile:false,
-	  	chosenEmoji:null,
-	  	setChosenEmoji:null
+	  	isFile:false
 	})
 
-  
-  const onEmojiClick = (event, emojiObject) => {
-    setState(...state, emojiObject:emojiObject);
-  }
-
 	const inputRef = useRef(null);
-
-
+	    
 	const handleSubmit = (e) =>{
 		e.preventDefault()
 		sendMessage()
@@ -172,50 +165,47 @@ function MessageInputFn(props){
 	}
 
 	useEffect(() => {      
-        stopCheckingTyping()
+		return () => {
+			stopCheckingTyping()
+        }
     }, [])
 
     const sendTyping = () =>{
-    	state.lastUpdateTime = Date.now()
+    	const lastUpdateTime = Date.now()
 		if(!state.isTyping){
 			setState({...state, isTyping:true})
 			props.sendTyping(true)
-			startCheckingTyping()
+			startCheckingTyping(lastUpdateTime)
 		}
     }
 
-    const startCheckingTyping = () =>{
-    	state.typingInterval = setInterval(()=>{
-			if((Date.now() - state.lastUpdateTime) > 300){
+    const startCheckingTyping = (lastUpdateTime) =>{
+    	const typingInterval = setInterval(()=>{
+			if((Date.now() - lastUpdateTime) > 300){
 				setState({...state, isTyping:false})
-				stopCheckingTyping()
+				stopCheckingTyping(typingInterval)
 			}
 		}, 300)
     }
 
-    const stopCheckingTyping = () =>{
-    	if(state.typingInterval){
-			clearInterval(state.typingInterval)
+    const stopCheckingTyping = (typingInterval) =>{
+    	if(typingInterval){
+			clearInterval(typingInterval)
 			props.sendTyping(false)
 		}
     }
 
-    const ChooseImage = (event) =>{
-    	document.getElementById('imageFile').click();
-    }
-
     const onFileChange = (event) =>{
-    	setState({...state, selectedFile:URL.createObjectURL(event.target.files[0])})
-		setState({...state, isFile:true})
+		const newSeletedFile = URL.createObjectURL(event.target.files[0])
+		setState(state =>  { return {...state,  selectedFile:newSeletedFile, isFile:true}}) 
     }
 
     const onFileUpload = () =>{
     	props.sendMessage(state.selectedFile, state.isFile)
-		setState({...state, isFile:false})
-		setState({...state, selectedFile:""})
+	//	setState({...state, isFile:false})
+	//	setState({...state, selectedFile:""})
+		setState(state =>  { return {...state,  selectedFile:"", isFile:false}})
     }
-
-  
 
     return (
 			<div className="message-input">
@@ -231,32 +221,30 @@ function MessageInputFn(props){
 						value = { state.message }
 						autoComplete = {'off'}
 						placeholder = "Type here..."
-						onKeyUp = { e => { e.keyUp !== 13 && sendTyping() } }
+						onKeyUp = { e => { e.key !== 'Enter' && sendTyping() } }
 						onChange = {
 							({target})=>{
-								setState({message:target.value})
+								setState({...state, message:target.value})
 							}
 						}
 						/>
 
-				<div className="file-upload">
-						  <label for="imageUpload">
-						    <MdBook/>
-						  </label>
-					<input id="imageUpload" type="file" onChange={onFileChange}/>
-						  <label for="fileUpload">
-							<MdFileUpload/>
-						  </label>
-					<input id="fileUpload" onClick={onFileUpload} />
-				</div>
+					<div className="file-upload">
+							<label htmlFor="imageUpload">
+								<MdBook/>
+							</label>
+						<input id="imageUpload" type="file" onChange={onFileChange}/>
+							<label htmlFor="fileUpload">
+								<MdFileUpload/>
+							</label>
+						<input id="fileUpload" onClick={onFileUpload} />
+					</div>
 
-		
-
-					<button
-						type = "submit"
-						className = "send"
-						> Send 
-					</button>
+						<button
+							type = "submit"
+							className = "send"
+							> Send 
+						</button>
 				</form>
 				
 				
@@ -264,7 +252,7 @@ function MessageInputFn(props){
 		);
 }
 
-export default (MessageInputFn);	
+export default (MessageInputFn);
 
 	// <div>
     //   {state.chosenEmoji ? (

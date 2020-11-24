@@ -462,7 +462,7 @@ import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
 import withChatContainer from './withChatContainer';
 
- const ChatContainerNew = props => {
+ const ChatContainer = props => {
 	
     return (
 		
@@ -522,4 +522,4 @@ import withChatContainer from './withChatContainer';
 	); 
  }
 
- export default (withChatContainer(ChatContainerNew));
+ export default (withChatContainer(ChatContainer));
