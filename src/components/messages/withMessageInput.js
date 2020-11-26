@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import MdFileUpload from 'react-icons/lib/md/file-upload'
-import MdBook from 'react-icons/lib/md/book'
 
 const withMessageInput = Components => props =>{
 	const[state, setState]=useState({
@@ -11,6 +9,10 @@ const withMessageInput = Components => props =>{
 	})
 
 	const inputRef = useRef(null);
+
+	const handleChange = (e)=>{	
+		setState({...state, message:e.target.value})
+	}
 	    
 	const handleSubmit = (e) =>{
 		e.preventDefault()
@@ -60,13 +62,13 @@ const withMessageInput = Components => props =>{
 
     const onFileUpload = () =>{
     	props.sendMessage(state.selectedFile, state.isFile)
-	//	setState({...state, isFile:false})
-	//	setState({...state, selectedFile:""})
 		setState(state =>  { return {...state,  selectedFile:"", isFile:false}})
     }
 
 
     const actionsMessageInput = {
+		inputRef,
+		handleChange,
     	handleSubmit,
     	sendMessage,
     	sendTyping,
