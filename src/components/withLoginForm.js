@@ -59,7 +59,7 @@
 // export default (withLoginFormFn);
 
 
-//// AMERICA /////
+
 
 import React, { useState, useRef } from 'react';
 import { VERIFY_USER } from '../Events'
