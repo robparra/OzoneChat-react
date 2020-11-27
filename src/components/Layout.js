@@ -87,104 +87,101 @@
 // 	}
 // }
 
- import React, { useState, useEffect } from 'react';
- import io from 'socket.io-client'
- import { USER_CONNECTED, LOGOUT, VERIFY_USER } from '../Events'
- import LoginForm from './LoginForm'
- import ChatContainer from './chats/ChatContainer'
- import chatManager from './chatManager'
+//  import React, { useState, useEffect } from 'react';
+//  import io from 'socket.io-client'
+//  import { USER_CONNECTED, LOGOUT, VERIFY_USER } from '../Events'
+//  import LoginForm from './LoginForm'
+//  import ChatContainer from './chats/ChatContainer'
+//  import chatManager from './chatManager'
 
- const socketUrl = "http://localhost:3231"
- export default function Layout () {
+//  const socketUrl = "http://localhost:3231"
+//  export default function Layout () {
 
- 	const[state, setState]=useState({
-		socket:null,
- 	  	user:null
-	})
+//  	const[state, setState]=useState({
+// 		socket:null,
+//  	  	user:null
+// 	})
 
-	useEffect(() => {      
-        initSocket()
-	}, [])
+// 	useEffect(() => {      
+//         initSocket()
+// 	}, [])
 	
- 	const initSocket = ()=>{
- 		const socket = io(socketUrl)
+//  	const initSocket = ()=>{
+//  		const socket = io(socketUrl)
 
- 		socket.on('connect', ()=>{
- 			if (state.user) {
- 				reconnect(socket)
- 			}else{
- 				console.log("Connected");
- 			}
- 		})
+//  		socket.on('connect', ()=>{
+//  			if (state.user) {
+//  				reconnect(socket)
+//  			}else{
+//  				console.log("Connected");
+//  			}
+//  		})
 		
-		 setState({...state, socket:socket})
+// 		 setState({...state, socket:socket})
 		
- 	}
+//  	}
 
- 	const reconnect = (socket) => {
- 		socket.emit(VERIFY_USER, state.user.name, ({ isUser, user})=>{
- 			if (isUser) {
-				 setState({...state, user: null})
-				 console.log("Layout reconnet: ", state.user)
- 			}else{
- 				setUser(user)
- 			}
- 		})
- 	}
+//  	const reconnect = (socket) => {
+//  		socket.emit(VERIFY_USER, state.user.name, ({ isUser, user})=>{
+//  			if (isUser) {
+// 				 setState({...state, user: null})
+// 				 console.log("Layout reconnet: ", state.user)
+//  			}else{
+//  				setUser(user)
+//  			}
+//  		})
+//  	}
 
- 	const setUser = (user)=>{
- 		const { socket } = state
- 		socket.emit(USER_CONNECTED, user);
-		 setState({...state, user:user})
+//  	const setUser = (user)=>{
+//  		const { socket } = state
+//  		socket.emit(USER_CONNECTED, user);
+// 		 setState({...state, user:user})
 		
- 	}
+//  	}
 
- 	const logout = ()=>{
- 		const { socket } = state
- 		socket.emit(LOGOUT)
- 		setState({...state, user:null})
+//  	const logout = ()=>{
+//  		const { socket } = state
+//  		socket.emit(LOGOUT)
+//  		setState({...state, user:null})
 
-	 }
+// 	 }
 	 
-	const { socket, user } = state
+// 	const { socket, user } = state
 
-	return (
-		
-		<div className="container">
-			{
-				!user ?	
-				<LoginForm socket={socket} setUser={setUser} />
-				:
-				<ChatContainer socket={socket} user={user} logout={logout}/>
-			}
-		</div>
-		
-	);
- 	
- } 
- 
-
-// import React, { useState } from "react";
-// import withLayout from "./withLayout";
-// import io from 'socket.io-client'
-// import { USER_CONNECTED, LOGOUT, VERIFY_USER } from '../Events'
-// import LoginForm from './LoginForm'
-// import ChatContainer from './chats/ChatContainer'
-// import chatManager from './chatManager'
-
-// const Layout = props => {
 // 	return (
-
+		
 // 		<div className="container">
 // 			{
-// 				!props.user ?	
-// 				<LoginForm socket={props.socket} setUser={props.setUser} />
+// 				!user ?	
+// 				<LoginForm socket={socket} setUser={setUser} />
 // 				:
-// 				<ChatContainer socket={props.socket} user={props.user} logout={props.logout}/>
+// 				<ChatContainer socket={socket} user={user} logout={logout}/>
 // 			}
 // 		</div>
-
+		
 // 	);
+ 	
+//  } 
+ 
 
-// }
-// export default withLayout(Layout);
+import React, { useState } from "react";
+import withLayout from "./withLayout";
+import LoginForm from './LoginForm'
+import ChatContainer from './chats/ChatContainer'
+
+const Layout = props => {
+	return (
+
+		<div className="container">
+			{
+				!props.user ?	
+				<LoginForm socket={props.socket} setUser={props.setUser} />
+				:
+				<ChatContainer socket={props.socket} user={props.user} logout={props.logout}/>
+			}
+		</div>
+
+	);
+
+}
+export default withLayout(Layout);
