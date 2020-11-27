@@ -1,59 +1,64 @@
 import React, { useState, useRef } from 'react';
 import { VERIFY_USER } from '../Events'
 
- const withLoginFormFn = Component => props => {
+const withLoginForm = Component => props => { 
+	const[state, setState]=useState({
+		nickname:"",
+ 	  	error:"",
+ 	  	showContent:true
+	})
 
- 	const [state, setState]= useState({
-         nickname:(""),
-         error:(""),
- 	  	showContent:(true)
- 	}) 
-
- const inputRef = useRef(null);	
-
-
-// 	// const [nickname,setNickname]= useState('')
-
-// 	const [error, setError]= useState('')
-
- const chatButton = (event) =>{
- 	event.preventDeafault()
- 	setState({...state, showContent:!state.showContent})
- }
-
- const setUser = (user, isUser) =>{
- 	if (isUser) {
- 		props.setUser(user)
- 	}else{
- 		props.setUser(user)
+	const inputRef = useRef("");
+	
+ 	const chatButtom = (event) =>{
+ 		event.preventDefault()
+ 		setState({...state, 
+ 			showContent:!state.showContent
+		 })
+	
  	}
- }
 
- const handleSubmit = (e) =>{
- 	e.preventDefault()
- 	const { socket } = props
- 	const { nickname } = state.nickname
- 	socket.emit(VERIFY_USER, nickname, setUser)
- }
+ 	const setUser = ({user, isUser})=>{
 
- const handleChange = (e) =>{
- 	setState({...state, nickname:e.target.value})
- }
+ 		if(isUser){
+ 			// this.setError("User name taken")
+ 			// this.setError("")
+ 			props.setUser(user)
+ 		}else{
+ 			// this.setError("")
+ 			props.setUser(user)
+ 		}
+ 	}
 
-const actionsLoginForm = {
+ 	const handleSubmit = (e)=>{
+ 		e.preventDefault()
+ 		const { socket } = props
+ 		const { nickname } = state
+ 		socket.emit(VERIFY_USER, nickname, setUser)
+ 	}
+
+ 	const handleChange = (e)=>{	
+		 setState({...state, nickname:e.target.value})
 		 
-		setState,
-		state,
+ 	}
+
+ 	const setError = (error)=>{
+		 setState({...state, error:error})
+		 console.log("error: ", state.error)
+	 }
+
+	 const loginFormActions = {
 		inputRef,
-		chatButton,
-		setUser,
+		chatButtom,
 		handleSubmit,
-		handleChange
-
-	}
-
-	return ( < Component { ...actionsLoginForm} {...state} { ...props}/>
-    	)
+		handleChange,
+		setError
+    }
+	
+    return (
+        <Component {...loginFormActions} {...state}{...props} />
+    )
 }
 
-export default (withLoginFormFn);
+
+export default (withLoginForm);

@@ -138,157 +138,106 @@
 // }
 
 
-import React, { useState, useEffect, useRef } from 'react';
-import Dropzone from 'react-dropzone';
-import Axios from 'axios'
-import MdFileUpload from 'react-icons/lib/md/file-upload'
-import MdBook from 'react-icons/lib/md/book'
-
-function MessageInputFn(props){
-	const[state, setState]=useState({
-		message:"",
-	  	isTyping:false,
-	  	selectedFile:null,
-	  	isFile:false
-	})
-
-	const inputRef = useRef(null);
-	    
-	const handleSubmit = (e) =>{
-		e.preventDefault()
-		sendMessage()
-		setState({...state, message:""})
-	}
-
-	const sendMessage = () =>{
-		props.sendMessage(state.message, state.isFile)
-	}
-
-	useEffect(() => {      
-		return () => {
-			stopCheckingTyping()
-        }
-    }, [])
-
-    const sendTyping = () =>{
-    	const lastUpdateTime = Date.now()
-		if(!state.isTyping){
-			setState({...state, isTyping:true})
-			props.sendTyping(true)
-			startCheckingTyping(lastUpdateTime)
-		}
-    }
-
-    const startCheckingTyping = (lastUpdateTime) =>{
-    	const typingInterval = setInterval(()=>{
-			if((Date.now() - lastUpdateTime) > 300){
-				setState({...state, isTyping:false})
-				stopCheckingTyping(typingInterval)
-			}
-		}, 300)
-    }
-
-    const stopCheckingTyping = (typingInterval) =>{
-    	if(typingInterval){
-			clearInterval(typingInterval)
-			props.sendTyping(false)
-		}
-    }
-
-    const onFileChange = (event) =>{
-		const newSeletedFile = URL.createObjectURL(event.target.files[0])
-		setState(state =>  { return {...state,  selectedFile:newSeletedFile, isFile:true}}) 
-    }
-
-    const onFileUpload = () =>{
-    	props.sendMessage(state.selectedFile, state.isFile)
-	//	setState({...state, isFile:false})
-	//	setState({...state, selectedFile:""})
-		setState(state =>  { return {...state,  selectedFile:"", isFile:false}})
-    }
-
-    return (
-			<div className="message-input">
-				<form 
-					onSubmit={ handleSubmit }
-					className="message-form">
-
-					<input 
-						id = "message"
-						ref = {inputRef}
-						type = "text"
-						className = "form-control"
-						value = { state.message }
-						autoComplete = {'off'}
-						placeholder = "Type here..."
-						onKeyUp = { e => { e.key !== 'Enter' && sendTyping() } }
-						onChange = {
-							({target})=>{
-								setState({...state, message:target.value})
-							}
-						}
-						/>
-
-					<div className="file-upload">
-							<label htmlFor="imageUpload">
-								<MdBook/>
-							</label>
-						<input id="imageUpload" type="file" onChange={onFileChange}/>
-							<label htmlFor="fileUpload">
-								<MdFileUpload/>
-							</label>
-						<input id="fileUpload" onClick={onFileUpload} />
-					</div>
-
-						<button
-							type = "submit"
-							className = "send"
-							> Send 
-						</button>
-				</form>
-				
-				
-			</div>
-		);
-}
-
-export default (MessageInputFn);
-
 // import React, { useState, useEffect, useRef } from 'react';
-// import withMessageInput from "./withMessageInput";
+// import Dropzone from 'react-dropzone';
+// import Axios from 'axios'
+// import MdFileUpload from 'react-icons/lib/md/file-upload'
+// import MdBook from 'react-icons/lib/md/book'
 
-// const MessageInput = props =>{
-// 	return (
-// 		<div className="message-input">
+// function MessageInputFn(props){
+// 	const[state, setState]=useState({
+// 		message:"",
+// 	  	isTyping:false,
+// 	  	selectedFile:null,
+// 	  	isFile:false
+// 	})
+
+// 	const inputRef = useRef(null);
+	    
+// 	const handleSubmit = (e) =>{
+// 		e.preventDefault()
+// 		sendMessage()
+// 		setState({...state, message:""})
+// 	}
+
+// 	const sendMessage = () =>{
+// 		props.sendMessage(state.message, state.isFile)
+// 	}
+
+// 	useEffect(() => {      
+// 		return () => {
+// 			stopCheckingTyping()
+//         }
+//     }, [])
+
+//     const sendTyping = () =>{
+//     	const lastUpdateTime = Date.now()
+// 		if(!state.isTyping){
+// 			setState({...state, isTyping:true})
+// 			props.sendTyping(true)
+// 			startCheckingTyping(lastUpdateTime)
+// 		}
+//     }
+
+//     const startCheckingTyping = (lastUpdateTime) =>{
+//     	const typingInterval = setInterval(()=>{
+// 			if((Date.now() - lastUpdateTime) > 300){
+// 				setState({...state, isTyping:false})
+// 				stopCheckingTyping(typingInterval)
+// 			}
+// 		}, 300)
+//     }
+
+//     const stopCheckingTyping = (typingInterval) =>{
+//     	if(typingInterval){
+// 			clearInterval(typingInterval)
+// 			props.sendTyping(false)
+// 		}
+//     }
+
+//     const onFileChange = (event) =>{
+// 		const newSeletedFile = URL.createObjectURL(event.target.files[0])
+// 		setState(state =>  { return {...state,  selectedFile:newSeletedFile, isFile:true}}) 
+//     }
+
+//     const onFileUpload = () =>{
+//     	props.sendMessage(state.selectedFile, state.isFile)
+// 	//	setState({...state, isFile:false})
+// 	//	setState({...state, selectedFile:""})
+// 		setState(state =>  { return {...state,  selectedFile:"", isFile:false}})
+//     }
+
+//     return (
+// 			<div className="message-input">
 // 				<form 
-// 					onSubmit={ props.handleSubmit }
+// 					onSubmit={ handleSubmit }
 // 					className="message-form">
 
 // 					<input 
 // 						id = "message"
-// 						ref = {props.inputRef}
+// 						ref = {inputRef}
 // 						type = "text"
 // 						className = "form-control"
-// 						value = { props.message }
+// 						value = { state.message }
 // 						autoComplete = {'off'}
 // 						placeholder = "Type here..."
-// 						onKeyUp = { e => { e.key !== 'Enter' && props.sendTyping() } }
+// 						onKeyUp = { e => { e.key !== 'Enter' && sendTyping() } }
 // 						onChange = {
 // 							({target})=>{
-// 								props.setState({...props.state, message:target.value})
+// 								setState({...state, message:target.value})
 // 							}
 // 						}
 // 						/>
 
 // 					<div className="file-upload">
 // 							<label htmlFor="imageUpload">
-// 								<props.MdBook/>
+// 								<MdBook/>
 // 							</label>
-// 						<input id="imageUpload" type="file" onChange={props.onFileChange}/>
+// 						<input id="imageUpload" type="file" onChange={onFileChange}/>
 // 							<label htmlFor="fileUpload">
-// 								<props.MdFileUpload/>
+// 								<MdFileUpload/>
 // 							</label>
-// 						<input id="fileUpload" onClick={props.onFileUpload} />
+// 						<input id="fileUpload" onClick={onFileUpload} />
 // 					</div>
 
 // 						<button
@@ -303,4 +252,53 @@ export default (MessageInputFn);
 // 		);
 // }
 
-// export default (withMessageInput(MessageInput));
+// export default (MessageInputFn);
+
+import React from 'react';
+import MdFileUpload from 'react-icons/lib/md/file-upload'
+import MdBook from 'react-icons/lib/md/book'
+import withMessageInput from "./withMessageInput";
+
+const MessageInput = props =>{
+	return (
+		<div className="message-input">
+				<form 
+					onSubmit={ props.handleSubmit }
+					className="message-form">
+
+					<input 
+						id = "message"
+						ref = {props.inputRef}
+						type = "text"
+						className = "form-control"
+						value = { props.message }
+						autoComplete = {'off'}
+						placeholder = "Type here..."
+						onKeyUp = { e => { e.key !== 'Enter' && props.sendTyping() } }
+						onChange = {props.handleChange}
+						/>
+
+					<div className="file-upload">
+							<label htmlFor="imageUpload">
+								<MdBook/>
+							</label>
+						<input id="imageUpload" type="file" onChange={props.onFileChange}/>
+							<label htmlFor="fileUpload">
+								<MdFileUpload/>
+							</label>
+						<input id="fileUpload" onClick={props.onFileUpload} />
+					</div>
+
+						<button
+							type = "submit"
+							className = "send"
+							> Send 
+						</button>
+				</form>
+				
+				
+			</div>
+		);
+}
+
+export default (withMessageInput(MessageInput));

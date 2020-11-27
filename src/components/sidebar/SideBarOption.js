@@ -32,26 +32,51 @@
 // }
 
 
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+// import React, { useState } from 'react'
+// import PropTypes from 'prop-types'
 
-function SideBarOptionFn(props){
-SideBarOptionFn.propTypes = {
-        name: PropTypes.string.isRequired,
-        lastMessage: PropTypes.string,
-        active: PropTypes.bool,
-        onClick: PropTypes.func
-}
+// function SideBarOptionFn(props){
+// SideBarOptionFn.propTypes = {
+//         name: PropTypes.string.isRequired,
+//         lastMessage: PropTypes.string,
+//         active: PropTypes.bool,
+//         onClick: PropTypes.func
+// }
 
-SideBarOptionFn.defaultProps = {
-        lastMessage: "",
-        active:(false),
-    }
+// SideBarOptionFn.defaultProps = {
+//         lastMessage: "",
+//         active:(false),
+//     }
 
-    const onClock= () => { }
+//     const onClock= () => { }
     
 
-    return(
+//     return(
+//             <div 
+//                 className={`user ${props.active ? 'active':''}`}
+//                 onClick={props.onClick}
+//                 >
+//                 <div className="user-photo">{props.name[0].toUpperCase()}</div>
+//                 <div className="user-info">
+//                     <div className="name">{props.name}</div>
+//                     <div className="last-message">{props.lastMessage}</div>
+//                 </div>
+                
+//             </div>
+//         );
+// }
+
+
+
+
+// export default (SideBarOptionFn);
+
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import withSideBarOption from "./withSideBarOption";
+
+const SideBarOption = props => {
+    return (
             <div 
                 className={`user ${props.active ? 'active':''}`}
                 onClick={props.onClick}
@@ -63,10 +88,6 @@ SideBarOptionFn.defaultProps = {
                 </div>
                 
             </div>
-        );
+        )
 }
-
-
-
-
-export default (SideBarOptionFn);
+export default (withSideBarOption(SideBarOption));

@@ -79,119 +79,119 @@
 // 	}
 // }
 
-import React, { useState, useRef } from 'react';
-import { VERIFY_USER } from '../Events'
+// import React, { useState, useRef } from 'react';
+// import { VERIFY_USER } from '../Events'
 
-export default function LoginForm (props) {
+// export default function LoginForm (props) {
  
-	const[state, setState]=useState({
-		nickname:"",
- 	  	error:"",
- 	  	showContent:true
-	})
+// 	const[state, setState]=useState({
+// 		nickname:"",
+//  	  	error:"",
+//  	  	showContent:true
+// 	})
 
-	const textInput = useRef("");
+// 	const textInput = useRef("");
 	
- 	const chatButtom = (event) =>{
- 		event.preventDefault()
- 		setState({...state, 
- 			showContent:!state.showContent
-		 })
+//  	const chatButtom = (event) =>{
+//  		event.preventDefault()
+//  		setState({...state, 
+//  			showContent:!state.showContent
+// 		 })
 	
- 	}
+//  	}
 
- 	const setUser = ({user, isUser})=>{
+//  	const setUser = ({user, isUser})=>{
 
- 		if(isUser){
- 			// this.setError("User name taken")
- 			// this.setError("")
- 			props.setUser(user)
- 		}else{
- 			// this.setError("")
- 			props.setUser(user)
- 		}
- 	}
+//  		if(isUser){
+//  			// this.setError("User name taken")
+//  			// this.setError("")
+//  			props.setUser(user)
+//  		}else{
+//  			// this.setError("")
+//  			props.setUser(user)
+//  		}
+//  	}
 
- 	const handleSubmit = (e)=>{
- 		e.preventDefault()
- 		const { socket } = props
- 		const { nickname } = state
- 		socket.emit(VERIFY_USER, nickname, setUser)
- 	}
+//  	const handleSubmit = (e)=>{
+//  		e.preventDefault()
+//  		const { socket } = props
+//  		const { nickname } = state
+//  		socket.emit(VERIFY_USER, nickname, setUser)
+//  	}
 
- 	const handleChange = (e)=>{	
-		 setState({...state, nickname:e.target.value})
+//  	const handleChange = (e)=>{	
+// 		 setState({...state, nickname:e.target.value})
 		 
- 	}
+//  	}
 
- 	const setError = (error)=>{
-		 setState({...state, error:error})
-		 console.log("error: ", state.error)
-	 }
+//  	const setError = (error)=>{
+// 		 setState({...state, error:error})
+// 		 console.log("error: ", state.error)
+// 	 }
 	 
-	 const { nickname, error, showContent } = state
+// 	 const { nickname, error, showContent } = state
 	
- 		return (
- 			<div className="login" ><div className="login" >
-				{showContent ?
-					<form onSubmit={handleSubmit} className="login-form" >
-						<input
-							ref={textInput} 
-							type="text"
-							id="nickname"
-							value={nickname}
-							onChange={handleChange}
-							placeholder={'ChatUsername'}
-							/>
-							<button id="submit"
-							type = "submit"
-							className = "login"
+//  		return (
+//  			<div className="login" ><div className="login" >
+// 				{showContent ?
+// 					<form onSubmit={handleSubmit} className="login-form" >
+// 						<input
+// 							ref={textInput} 
+// 							type="text"
+// 							id="nickname"
+// 							value={nickname}
+// 							onChange={handleChange}
+// 							placeholder={'ChatUsername'}
+// 							/>
+// 							<button id="submit"
+// 							type = "submit"
+// 							className = "login"
 
-						> login </button>
-							{/* <div className="error">{error ? error:null}</div> */}
+// 						> login </button>
+// 							{/* <div className="error">{error ? error:null}</div> */}
 							
 
-					</form>
-				:''}
- 			</div>
-		 	<button id="button-chatlogin" onClick={chatButtom}>Chat</button>
-  			</div>
+// 					</form>
+// 				:''}
+//  			</div>
+// 		 	<button id="button-chatlogin" onClick={chatButtom}>Chat</button>
+//   			</div>
 			
- 		);
-}
+//  		);
+// }
  
-// import React, { Component } from 'react';
+import React, { Component } from 'react';
 
-// import  withLoginForm from "./withLoginForm";
+import  withLoginForm from "./withLoginForm";
 
-// const LoginForm = props =>{
-// 	return (
-// 			<div className="login" ><div className="login" >
-//  			{props.showContent === true ?
-//  				<form onSubmit={props.handleSubmit} className="login-form" >
-//  					<input
-//  						ref={props.inputRef} 
-//  						type="text"
-//  						id="nickname"
-//  						value={props.nickname}
-// 						onChange={props.handleChange}
-//  						placeholder={'ChatUsername'}
-//  						/>
-//  						<button id="submit"
-//  						type = "submit"
-//  						className = "login"
+const LoginForm = props =>{
+	return (
+			<div className="login" ><div className="login" >
+ 			{props.showContent === true ?
+ 				<form onSubmit={props.handleSubmit} className="login-form" >
+ 					<input
+ 						ref={props.inputRef} 
+ 						type="text"
+ 						id="nickname"
+ 						value={props.nickname}
+						onChange={props.handleChange}
+ 						placeholder={'ChatUsername'}
+ 						/>
+ 						<button id="submit"
+ 						type = "submit"
+ 						className = "login"
 
-//  					> login </button>
+ 					> login </button>
  						
 
 
-//  				</form>
-//  			:''}
-//  		</div>
-//  		<button id="button-chatlogin" onClick={() => props.chatButton()}>Chat</button>
-//   </div>
+ 				</form>
+ 			:''}
+ 		</div>
+ 		<button id="button-chatlogin" onClick={() => props.chatButton()}>Chat</button>
+  </div>
 
-// 		);
-// }
+		);
+}
 
-// export default (withLoginForm(LoginForm));
+export default (withLoginForm(LoginForm));
