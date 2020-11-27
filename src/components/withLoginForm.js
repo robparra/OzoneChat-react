@@ -9,6 +9,7 @@
 //  	  	showContent:(true)
 //  	}) 
 
+<<<<<<< HEAD
 //  const inputRef = useRef(null);	
 
 
@@ -110,6 +111,54 @@ const withLoginForm = Component => props => {
 		 console.log("error: ", state.error)
 	 }
 
+=======
+const withLoginForm = Component => props => { 
+	const[state, setState]=useState({
+		nickname:"",
+ 	  	error:"",
+ 	  	showContent:true
+	})
+
+	const inputRef = useRef("");
+	
+ 	const chatButtom = (event) =>{
+ 		event.preventDefault()
+ 		setState({...state, 
+ 			showContent:!state.showContent
+		 })
+	
+ 	}
+
+ 	const setUser = ({user, isUser})=>{
+
+ 		if(isUser){
+ 			// this.setError("User name taken")
+ 			// this.setError("")
+ 			props.setUser(user)
+ 		}else{
+ 			// this.setError("")
+ 			props.setUser(user)
+ 		}
+ 	}
+
+ 	const handleSubmit = (e)=>{
+ 		e.preventDefault()
+ 		const { socket } = props
+ 		const { nickname } = state
+ 		socket.emit(VERIFY_USER, nickname, setUser)
+ 	}
+
+ 	const handleChange = (e)=>{	
+		 setState({...state, nickname:e.target.value})
+		 
+ 	}
+
+ 	const setError = (error)=>{
+		 setState({...state, error:error})
+		 console.log("error: ", state.error)
+	 }
+
+>>>>>>> cc6ba5c0d11052a83264dc8b8548571b2a4ccd0d
 	 const loginFormActions = {
 		inputRef,
 		chatButtom,
