@@ -15,7 +15,8 @@ input, textarea {
 }
 #button-chat {
     position: absolute;
-    right: 53%
+    right: -16%;
+    width: 66%;
 }
 #button-upload {
     height: 50px
@@ -88,20 +89,20 @@ input, textarea {
     flex-direction: row;
     align-items: flex-start;
     height: 100%;
-    width: 147%;
+    width: 182%;
     position: relative;
-    left: -25%;
+    left: -39%;
 }
 #side-bar {
     box-sizing: border-box;
-    width: 229%;
-    height: 50%;
+    width: 281%;
+    height: 45%;
     display: grid;
     justify-content: stretch;
     grid-template-rows: 8vh 5vh 5vh 1fr 8vh;
     position: relative;
-    right: -50%;
-    bottom: 7%;
+    right: -51%;
+    bottom: -6%;
     z-index: 3;
 }
 /*#side-bar .heading {
@@ -121,7 +122,7 @@ input, textarea {
     align-items: center
 }
 #side-bar .side-bar-select__option {
-    background: #6325C9;
+    background: #fff;
     width: 100%;
     height: 100%;
     display: flex;
@@ -133,10 +134,10 @@ input, textarea {
 #side-bar .side-bar-select__option.active {
     border-radius: 0px;
     box-shadow: inset 5px 5px 10px #535454, inset -5px -5px 10px #ffffff;
-    background: #dfdfe8
+    background: #fff
 }
 #side-bar .search {
-    background: #cfd2d3;
+    background: #000;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -147,9 +148,9 @@ input, textarea {
     border-color: black;
     padding-left: 15px;
     padding-right: 20px;
-    border-radius: 75px 75px 0px 0px;
+    /*border-radius: 75px 75px 0px 0px;
     -moz-border-radius: 75px 75px 0px 0px;
-    -webkit-border-radius: 75px 75px 0px 0px;
+    -webkit-border-radius: 75px 75px 0px 0px;*/
     border: 0px solid #000000;
 }
 #side-bar .search .search-icon {
@@ -159,11 +160,11 @@ input, textarea {
 }
 #side-bar .search input {
     width: 92%;
-    background: #cfd2d3;
+    background: #000;
     flex-grow: 1;
     box-sizing: border-box;
     border: none;
-    color: #000
+    color: #fff
 }
 #side-bar .search input:focus {
     outline: none
@@ -197,7 +198,7 @@ input, textarea {
 }
 #side-bar .users {
     overflow-y: scroll;
-    background: #cfd2d3;
+    background: #000;
     flex-grow: 1
 }
 #side-bar .users::-webkit-scrollbar-track {
@@ -214,14 +215,14 @@ input, textarea {
 #side-bar .users .user {
     align-items: center;
     display: flex;
-    height: 66px;
+    height: 40px;
     justify-content: flex-start;
     padding: 18px 16px
 }
 #side-bar .users .user.active, #side-bar .users .user:hover {
     box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
     box-sizing: border-box;
-    background: #dfdfe8
+    background: #000
 }
 #side-bar .users .user:hover:not(.active) {
     cursor: pointer
@@ -246,13 +247,16 @@ input, textarea {
     background: #cfd2d3;
     box-shadow: inset 5px 5px 10px #535454, inset -5px -5px 10px #ffffff;
     align-items: center;
-    background: #cfd2d3;
+    background: #000;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-left: 16px;
-    padding-right: 16px
+    padding-right: 16px;
+    position: inherit;
+    top: -491%;
+    height: 49%
 }
 #side-bar .current-user .logout {
     align-items: center;
@@ -273,7 +277,7 @@ input, textarea {
     height: 10%;
 }
 .chat-header {
-    background: #cfd2d3;
+    background: #000;
     box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
     box-sizing: border-box;
     display: flex;
@@ -282,6 +286,9 @@ input, textarea {
     padding: 18px 16px;
     width: 102%;
     z-index: 3;
+    position: relative;
+    top: -335%;
+    height: 30%
 }
 .chat-header .user-info {
     align-items: center;
@@ -323,11 +330,11 @@ input, textarea {
 .chat-room {
     display: grid;
     grid-template: 8vh 1fr 8vh / 100%;
-    height: 57%;
+    height: 69%;
     width: 98%;
     position: relative;
     left: 0.8%;
-    bottom: -43%
+    bottom: -35%
 }
 .chat-room.choose {
     align-items: center;
@@ -363,7 +370,7 @@ input, textarea {
     flex-direction: column;
     justify-content: flex-end;
     color: #000;
-    background: #dcddf5
+    background: #fff
 }
 .message-container {
     display: flex;
@@ -373,7 +380,11 @@ input, textarea {
     animation: .65s ease-out 0s show
 }
 .message-container .time {
-    order: 1
+    order: 1;
+    position: relative;
+    top: -28%;
+    right: -21%
+
 }
 .message-container .data {
     border-radius: 50px;
@@ -384,11 +395,15 @@ input, textarea {
     margin-left: 25px;
     word-break: break-all;
     -webkit-border-radius: 20px 20px 20px 20px;
+    width: 72%;
 }
 .message-container .name {
-    font-size: .65em;
+    font-size: .85em;
     margin-top: 5px;
-    text-align: right
+    text-align: right;
+    right:113%;
+    position: relative;
+    top: -136%
 }
 .message-container .message {
     border-radius: 50px;
@@ -431,13 +446,15 @@ input, textarea {
 }
 .message-container.right .time {
     order: 2;
-    margin-left: 25px
+    margin-left: 25px;
+    left: 0%
 }
 .message-container.right .data {
     box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
     margin-left: 0;
     order: 1;
     -webkit-border-radius: 20px 20px 20px 20px;
+    width: 72%
 }
 .message-container.right .name {
     display: none
@@ -480,9 +497,10 @@ input, textarea {
     left: 0%;
     position: relative;
     bottom: 0%;
-    border-radius: 0px 0px 75px 75px;
+    /*border-radius: 0px 0px 75px 75px;
     -moz-border-radius: 0px 0px 75px 75px;
-    -webkit-border-radius: 0px 0px 75px 75px;
+    -webkit-border-radius: 0px 0px 75px 75px;*/
+    height: 64%
 }
 .message-input .message-form {
     height: 100%;
@@ -498,9 +516,9 @@ input, textarea {
     height: 100%;
     /*border: none;*/
     font-size: 13px;
-    border-radius: 0px 0px 0px 75px;
+    /*border-radius: 0px 0px 0px 75px;
     -moz-border-radius: 0px 0px 0px 75px;
-    -webkit-border-radius: 0px 0px 0px 75px;
+    -webkit-border-radius: 0px 0px 0px 75px;*/
 }
 .message-input .message-form .form-control::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -517,7 +535,7 @@ input, textarea {
     outline: none
 }
 .message-input .message-form .send {
-    background: #cfd2d3;
+    background: #6325c9;
     box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
     width: 28%;
     box-sizing: border-box;
@@ -525,16 +543,16 @@ input, textarea {
     text-align: center;
     border: none;
     height: 100%;
-    color: #388af6;
-    background: #6325C9;
+    color: #fff;
+    background: #0033cf;
     transition: all .35s ease-out;
     box-shadow: inset -6px -6px 10px rgba(255, 255, 255, 0.5),
                 inset 6px 6px 10px rgba(70, 70, 70, 0.12),
                 inset -6px -6px 10px rgba(70, 70, 70, 0.12),
                 inset 6px 6px 10px rgba(255, 255, 255, 0.5);
-    border-radius: 0px 0px 75px 0px;
+    /*border-radius: 0px 0px 75px 0px;
     -moz-border-radius: 0px 0px 75px 0px;
-    -webkit-border-radius: 0px 0px 75px 0px;
+    -webkit-border-radius: 0px 0px 75px 0px;*/
 }
 .message-input .message-form .send:disabled {
     opacity: .2;

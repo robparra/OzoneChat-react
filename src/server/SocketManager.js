@@ -59,7 +59,7 @@ module.exports = function(socket){
 
 	//User logsout
 	socket.on(LOGOUT, ()=>{
-		connectedUsers = removeUser(connectedUsers, socket.user.name)
+		connectedUsers = removeUser(connectedUsers, socket.user)
 		socket.emit(USER_DISCONNECTED, connectedUsers)
 		console.log("Disconnect", connectedUsers);
 

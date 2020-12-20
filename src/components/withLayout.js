@@ -1,9 +1,6 @@
 import React, { useState, useEffect   } from 'react';
 import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT, VERIFY_USER } from '../Events'
-import LoginForm from './LoginForm'
-import ChatContainer from './chats/ChatContainer'
-import chatManager from './chatManager'
 
 const socketUrl = "http://localhost:3231"
 
@@ -65,20 +62,13 @@ const withLayout = Component => props =>{
 	}
 
 	const layoutActions = {
-        state,
-        setState,
-        initSocket,
-		reconnect,
+		socketUrl,
 		setUser,
 		logout
     }
 
 	return (
-
-		
-        <Component {...layoutActions} {...props} />
-    
-
+        <Component {...layoutActions} {...state} {...props} />
 	);
 
 }

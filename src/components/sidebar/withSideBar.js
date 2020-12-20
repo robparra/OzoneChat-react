@@ -1,22 +1,12 @@
 import React, { useState, useRef} from 'react';
-import FASearch from 'react-icons/lib/fa/search'
-import SideBarFnOption from './SideBarOption'
-import { last, get, differenceBy } from 'lodash' 
-import { createChatNameFromUsers } from '../../Factories'
-import MdEject from 'react-icons/lib/md/eject'
 
-const withSideBar = Component => props =>{
-
+const withSideBarFn = Component => props => {	
 	const [state, setState]= useState({
 		reciever:"",
-		activeSideBarFn: SideBarFn.type.CHATS
+		activeSideBarFn: withSideBarFn.type.CHATS
 	})
 
 	const inputRef = useRef(null);
-
-	const handleChange = (e)=>{	
-		setState({...state,reciever:e.target.value})
-	}
 
 	const handleSubmit = (e) =>{
 		e.preventDefault()
@@ -29,26 +19,33 @@ const withSideBar = Component => props =>{
 
 	const addChatForUser = (reciever) =>{
 		props.onSendPrivateMessage(reciever)
-		setActiveSideBarFn(SideBarFn.type.CHATS)
+		setActiveSideBarFn(withSideBarFn.type.CHATS)
 	}
 
 	const setActiveSideBarFn = (type) =>{
 		setState({...state, activeSideBarFn:type })
 	}
 
-
-	const actionsSideBar = {
-		handleSubmit,
-		handleChange,
-		addChatForUser, 
-		setActiveSideBarFn
-
+	const handleChangeReciever = (e) => {
+		setState({reciever:e.target.value})
 	}
 
-	return (
-        <Component {...actionsSideBar} {...props} />
+	const sideBarActions = {
+		inputRef,
+		handleSubmit,
+		addChatForUser,
+		setActiveSideBarFn, 
+		handleChangeReciever
+		
+    }
+	
+    return (
+        <Component {...sideBarActions} {...state}{...props} />
     )
-
+}
+withSideBarFn.type = {
+	USERS:"users",
+	CHATS:"chats"
 }
 
-export default (withSideBar)
+export default (withSideBarFn);
