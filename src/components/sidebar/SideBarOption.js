@@ -91,5 +91,3 @@ const SideBarOption = props => {
         )
 }
 export default (withSideBarOption(SideBarOption));
-
-// 
