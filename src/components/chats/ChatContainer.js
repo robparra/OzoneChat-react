@@ -515,7 +515,7 @@ import withChatContainer from './withChatContainer';
 				</div>
 				:''}
 			</div>
-			<button id="button-chat" onClick={props.chatButtom}>Chat</button>
+			<button id="button-chat" onClick={props.chatButtom}>Open/Close Chat Window</button>
 
 		</div>
 		

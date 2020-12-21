@@ -188,7 +188,7 @@ const LoginForm = props =>{
  				</form>
  			:''}
  		</div>
- 		<button id="button-chatlogin" onClick={() => props.chatButton()}>Chat</button>
+ 		<button id="button-chatlogin" onClick={() => props.chatButton()}>Open/Close Chat Window</button>
   </div>
 
 		);

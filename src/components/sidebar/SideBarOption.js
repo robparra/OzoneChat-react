@@ -81,7 +81,7 @@ const SideBarOption = props => {
                 className={`user ${props.active ? 'active':''}`}
                 onClick={props.onClick}
                 >
-                <div className="user-photo">{props.name[0].toUpperCase()}</div>
+                <div className="user-photo">DM w/</div>
                 <div className="user-info">
                     <div className="name">{props.name}</div>
                     <div className="last-message">{props.lastMessage}</div>
@@ -91,3 +91,5 @@ const SideBarOption = props => {
         )
 }
 export default (withSideBarOption(SideBarOption));
+
+// 

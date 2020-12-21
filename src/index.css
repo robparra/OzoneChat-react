@@ -23,8 +23,9 @@ input, textarea {
 }
 #button-chatlogin {
     position: absolute;
-    right: 74%;
-    top: 0%
+    right: 23%;
+    top: 0%;
+    width: 46%;
 }
 #submit {
     width: 100%;
@@ -53,7 +54,7 @@ input, textarea {
     flex-direction: column;
     position: relative;
     right: 0%;
-    top: -45%;
+    top: -42%;
 }
 .login-form h2 {
     font-size: 5vw
@@ -170,7 +171,7 @@ input, textarea {
     outline: none
 }
 #side-bar .search input::placeholder {
-    color: #000;
+    color: #fff;
     opacity: .6
 }
 #side-bar .search .plus {
@@ -220,7 +221,7 @@ input, textarea {
     padding: 18px 16px
 }
 #side-bar .users .user.active, #side-bar .users .user:hover {
-    box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
+    box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #00ff34;
     box-sizing: border-box;
     background: #000
 }
@@ -245,7 +246,7 @@ input, textarea {
 #side-bar .current-user {
     border-radius: 0px;
     background: #cfd2d3;
-    box-shadow: inset 5px 5px 10px #535454, inset -5px -5px 10px #ffffff;
+    box-shadow: inset 5px 5px 10px #535454, inset -5px -5px 10px #00ff34;
     align-items: center;
     background: #000;
     box-sizing: border-box;
@@ -278,7 +279,7 @@ input, textarea {
 }
 .chat-header {
     background: #000;
-    box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #ffffff;
+    box-shadow: 5px 5px 10px #787a7a, -5px -5px 10px #00ff34;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;

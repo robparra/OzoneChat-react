@@ -226,7 +226,7 @@ const SideBarFn = props => {
 				<form onSubmit={props.handleSubmit} className="search">
 					<i className="search-icon"><FASearch /></i>
 					<input 
-						placeholder="Search" 
+						placeholder="Search user" 
 						type="text"
 						value={props.reciever}
 						onChange={props.handleChangeReciever}/>
@@ -273,7 +273,7 @@ const SideBarFn = props => {
 					}
 				</div>
 				<div className="current-user">
-					<span>{props.user.name}</span>
+					<span>You are: {props.user.name}</span>
 					<div onClick={()=>{props.logout()}} title="Logout" className="logout">
 						<MdEject/>	
 					</div>
