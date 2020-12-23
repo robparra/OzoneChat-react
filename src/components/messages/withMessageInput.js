@@ -1,12 +1,30 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Smile } from 'react-feather';
+import { Picker } from 'emoji-mart';
+
 
 const withMessageInput = Components => props =>{
 	const[state, setState]=useState({
 		message:"",
 	  	isTyping:false,
 	  	selectedFile:null,
-	  	isFile:false
+	  	isFile:false,
+	  	showEmojiPicker: false,
 	})
+
+	const toggleEmojiPicker=()=> {
+		setState(state => {	return {...state, showEmojiPicker:!state.showEmojiPicker}	})
+    }
+
+    const addEmoji=(emoji)=> {
+      const { message } = state;
+      const text = `${message}${emoji.native}`;
+
+      setState({...state,
+        message: text,
+        showEmojiPicker: false,
+      });
+    }
 
 	const inputRef = useRef(null);
 
@@ -27,6 +45,8 @@ const withMessageInput = Components => props =>{
 	useEffect(() => {      
 		return () => {
 			stopCheckingTyping()
+			addEmoji()
+			toggleEmojiPicker()
         }
     }, [])
 
@@ -75,7 +95,9 @@ const withMessageInput = Components => props =>{
     	startCheckingTyping,
     	stopCheckingTyping,
     	onFileChange,
-    	onFileUpload
+    	onFileUpload,
+    	toggleEmojiPicker,
+    	addEmoji
     }
 
     return ( < Components { ...actionsMessageInput} {...state} { ...props}/>

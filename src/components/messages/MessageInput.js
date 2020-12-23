@@ -258,6 +258,9 @@ import React from 'react';
 import MdFileUpload from 'react-icons/lib/md/file-upload'
 import MdBook from 'react-icons/lib/md/book'
 import withMessageInput from "./withMessageInput";
+import { Smile } from 'react-feather';
+import { Picker } from 'emoji-mart';
+
 
 const MessageInput = props =>{
 	return (
@@ -278,6 +281,14 @@ const MessageInput = props =>{
 						onChange = {props.handleChange}
 						/>
 
+						<button
+                    type="button"
+                    className="toggle-emoji"
+                    onClick={props.toggleEmojiPicker}
+                  >
+                    <Smile />
+                  </button>
+
 					<div className="file-upload">
 							<label htmlFor="imageUpload">
 								<MdBook/>
@@ -295,7 +306,9 @@ const MessageInput = props =>{
 							> Send 
 						</button>
 				</form>
-				
+				{props.showEmojiPicker ? (
+                  <Picker set="emojione" onSelect={props.addEmoji} />
+                ) : null}
 				
 			</div>
 		);

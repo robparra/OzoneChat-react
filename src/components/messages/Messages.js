@@ -144,6 +144,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import withMessages from "./withMessages";
+import ReactTextFormat from 'react-text-format';
 
 const Messages = props =>{
 	return (
@@ -160,13 +161,15 @@ const Messages = props =>{
 									<div className="time">{mes.time}</div>
 									<div className="data">
 
-									<div className="message">
+									<div className="message"><ReactTextFormat>
 									{
 										mes.isFile ?
+										<a  href={mes.message} download>
 										<img src={mes.message} style={{width:55, height:55}}/>
+										</a>
 										:
 										mes.message
-									}
+									}</ReactTextFormat>
 										
 									</div>	
 										
