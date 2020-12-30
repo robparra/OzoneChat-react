@@ -213,7 +213,7 @@ import FASearch from 'react-icons/lib/fa/search'
 import SideBarFnOption from './SideBarOption'
 import { last, get, differenceBy } from 'lodash' 
 import { createChatNameFromUsers } from '../../Factories'
-import MdEject from 'react-icons/lib/md/eject'
+import MdCancel from 'react-icons/lib/md/cancel'
 import withSideBar from './withSideBar';
 
 const SideBarFn = props => {
@@ -275,7 +275,7 @@ const SideBarFn = props => {
 				<div className="current-user">
 					<span>You are: {props.user.name}</span>
 					<div onClick={()=>{props.logout()}} title="Logout" className="logout">
-						<MdEject/>	
+						<MdCancel/>	
 					</div>
 				</div>
 		</div>

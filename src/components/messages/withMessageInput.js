@@ -39,15 +39,12 @@ const withMessageInput = Components => props =>{
 	}
 
 	const sendMessage = () =>{
-		props.sendMessage(state.message, state.isFile)
+		props.sendMessage(state.message, state.isFile, state.addEmoji)
 	}
 
 	useEffect(() => {      
 		return () => {
-			stopCheckingTyping()
-			addEmoji()
-			toggleEmojiPicker()
-        }
+			stopCheckingTyping()        }
     }, [])
 
     const sendTyping = () =>{

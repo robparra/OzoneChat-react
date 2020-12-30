@@ -161,7 +161,8 @@ const Messages = props =>{
 									<div className="time">{mes.time}</div>
 									<div className="data">
 
-									<div className="message"><ReactTextFormat>
+									<div className="message">
+									<ReactTextFormat>
 									{
 										mes.isFile ?
 										<a  href={mes.message} download>
@@ -169,7 +170,8 @@ const Messages = props =>{
 										</a>
 										:
 										mes.message
-									}</ReactTextFormat>
+									}
+									</ReactTextFormat>
 										
 									</div>	
 										

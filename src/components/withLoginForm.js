@@ -11,7 +11,7 @@ const withLoginForm = Component => props => {
 	const inputRef = useRef("");
 	
  	const chatButtom = (event) =>{
- 		event.preventDefault()
+ 		// event.preventDefault()
  		setState({...state, 
  			showContent:!state.showContent
 		 })
